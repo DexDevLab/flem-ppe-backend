@@ -1,8 +1,9 @@
 import {
   PhoneNumberFormat,
-  PhoneNumberUtil,
   PhoneNumberType,
+  PhoneNumberUtil,
 } from "google-libphonenumber";
+import { exceptionHandler } from "./exceptionHandler";
 
 const phoneUtil = new PhoneNumberUtil();
 
@@ -11,9 +12,11 @@ const phoneUtil = new PhoneNumberUtil();
  * sem formatação para um formato contendo DDD e número.
  * Valida o campo e retorna se o número de telefone está
  * válido, detectando o DDD e o prefixo do número inserido.
+ * @method phoneNumberFixer
+ * @memberof module:utils
  * @param {String} number Número de telefone.
  * @param {String} countryCode Código do país.
- * @returns Número de telefone no formato DDD+Número 
+ * @returns Número de telefone no formato DDD+Número
  */
 export const phoneNumberFixer = (number, countryCode) => {
   if (number === null) {
@@ -38,7 +41,7 @@ export const phoneNumberFixer = (number, countryCode) => {
         case PhoneNumberType.MOBILE && 13:
           return rawNumber.slice(3, 5) + 9 + rawNumber.slice(5, 14);
         default:
-          return rawNumber.slice(3)
+          return rawNumber.slice(3);
       }
     };
     const output = {
@@ -49,7 +52,7 @@ export const phoneNumberFixer = (number, countryCode) => {
     };
     return output;
   } catch (e) {
-    console.error(e);
+    exceptionHandler(e, 0);
     return { formatted: "", isValid: "", success: false, code: "" };
   }
 };

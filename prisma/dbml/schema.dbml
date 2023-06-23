@@ -1,0 +1,870 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Ba_Acoes_Cr {
+  id String [pk]
+  codAcao Int [increment, not null]
+  nome String [not null]
+  descricao String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  evento_id String
+  tipoAcaoCr_Id String
+  evento Ba_Eventos
+  colabCr Ba_Colaboradores_Cr [not null]
+  benefAssoc Ba_Beneficiarios [not null]
+  contatos Ba_Contatos_Acoes_Cr [not null]
+  tipoAcaoCr Ba_Tipos_Acoes_Cr
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Beneficiarios {
+  id String [pk]
+  nome String [not null]
+  cpf String
+  matriculaFlem Int
+  matriculaSec String [unique, not null]
+  rg String
+  dataNasc DateTime
+  ctps String
+  pis String
+  sexo String
+  deficiencia String
+  dataInicioAtividade DateTime
+  observacao String
+  logradouro String
+  numero String
+  complemento String
+  bairro String
+  municipio String
+  uf String
+  cep String
+  carteiraAssinada1Ano Boolean [default: false]
+  ausenciaEstagio Boolean [default: false]
+  escolaConclusao String
+  escolaMunicipio String
+  superiorConcluido String
+  superiorModalidade String
+  superiorPeriodo Int
+  cursoTipo String
+  superiorTipo String
+  superiorPretende String
+  superiorCursando String
+  superiorCursandoData DateTime
+  tecnicoMatriculadoOutro String
+  tecnicoCursandoOutro String
+  superiorCurso String
+  superiorInstituicao String
+  rendaPpeAjuda String
+  superiorAnoInicio Int
+  superiorAnoConclusao Int
+  anamnese Boolean [not null, default: false]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  acoes Ba_Acoes_Cr [not null]
+  contatosAcoes Ba_Contatos_Acoes_Cr [not null]
+  eventos Ba_Eventos [not null]
+  eventosListaPresenca Ba_Eventos_Lista_Presenca [not null]
+  materiais Ba_Materiais [not null]
+  monitoramentos Ba_Monitoramentos [not null]
+  comunicados Ba_Comunicados [not null]
+  enviosComunicados Ba_Comunicados_Enviados [not null]
+  oficios Ba_Oficios [not null]
+  enviosOficios Ba_Oficios_Enviados [not null]
+  documentos Ba_Documentos [not null]
+  contatos Ba_Contatos_Beneficiarios [not null]
+  vaga Ba_Vaga [not null]
+  historico Ba_Historico [not null]
+  pendencias Ba_Pendencias [not null]
+  etnia_Id String
+  tamanhoUniforme_Id String
+  formacao_Id String
+  etnia Ba_Etnia
+  formacao Ba_Formacao
+  tamanhoUniforme Ba_TamanhoUniforme
+  materiaisEntregues Ba_Materiais_Entregues [not null]
+}
+
+Table Ba_Colaboradores_Cr {
+  id String [pk]
+  nome String [not null]
+  login_usuario String [unique, not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  acoes Ba_Acoes_Cr [not null]
+  contatosAcoes Ba_Contatos_Acoes_Cr [not null]
+}
+
+Table Ba_Comunicados {
+  id String [pk]
+  codComunicado Int [increment, not null]
+  assunto String [not null]
+  conteudoEmail String [not null]
+  anexosId String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  remetenteComunicado_Id String
+  benefAssoc Ba_Beneficiarios [not null]
+  enviosComunicados Ba_Comunicados_Enviados [not null]
+  remetenteComunicado Ba_Comunicados_Remetentes
+  historico Ba_Historico
+  historico_Id String
+  evento Ba_Eventos
+  evento_Id String
+}
+
+Table Ba_Comunicados_Enviados {
+  id String [pk]
+  enviado Boolean [not null, default: false]
+  conteudoEmail String [not null]
+  anexosId String
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  comunicado_Id String
+  beneficiario_Id String
+  comunicado Ba_Comunicados
+  beneficiario Ba_Beneficiarios
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Comunicados_Remetentes {
+  id String [pk]
+  nome String [not null]
+  email String [unique, not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  comunicados Ba_Comunicados [not null]
+  oficios Ba_Oficios [not null]
+}
+
+Table Ba_Contatos_Acoes_Cr {
+  id String [pk]
+  descricao String [not null]
+  concluido Boolean [not null, default: false]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  acaoCr_id String
+  beneficiario_id String
+  colabCr_id String
+  acao_Cr Ba_Acoes_Cr
+  beneficiario Ba_Beneficiarios
+  colabCr Ba_Colaboradores_Cr
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Contatos_Beneficiarios {
+  id String [pk]
+  contato String [not null]
+  observacao String
+  excluido Boolean [not null, default: false]
+  tipoContato_Id String [not null]
+  benefAssoc_Id String [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipoContato Ba_Contatos_Tipos [not null]
+  benefAssoc Ba_Beneficiarios [not null]
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Contatos_Pontos_Focais {
+  id String [pk]
+  contato String [not null]
+  excluido Boolean [not null, default: false]
+  tipoContato_Id String [not null]
+  pontoFocal_Id String
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipoContato Ba_Contatos_Tipos [not null]
+  pontoFocal Ba_Unidade_Lotacao_Ponto_Focal
+}
+
+Table Ba_Contatos_Tipos {
+  id String [pk]
+  nome String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  contatosBeneficiarios Ba_Contatos_Beneficiarios [not null]
+  contatosPontosFocais Ba_Contatos_Pontos_Focais [not null]
+}
+
+Table Ba_Demandantes {
+  id String [pk]
+  sigla String [not null]
+  nome String [unique, not null]
+  vagas Ba_Vaga [not null]
+  monitores Ba_Monitores [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Documentos {
+  id String [pk]
+  descricao String
+  sigiloso Boolean [not null, default: false]
+  excluido Boolean [not null, default: false]
+  anexosId String
+  benefAssoc_Id String [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  benefAssoc Ba_Beneficiarios [not null]
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Editor_Parametros {
+  id String [pk]
+  rotulo String [not null]
+  nomeColuna String [not null]
+  nomeTabela String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Eixo_Formacao {
+  id String [pk]
+  nome String [unique, not null]
+  excluido Boolean [not null, default: false]
+  formacoes Ba_Formacao [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Escritorio_Regional {
+  id String [pk]
+  nome String [unique, not null]
+  cep String [not null]
+  logradouro String [not null]
+  complemento String
+  bairro String [not null]
+  cidade String [not null]
+  uf String [not null]
+  email String
+  num_contato String
+  monitores Ba_Monitores [not null]
+  municipios Ba_Municipios [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Etnia {
+  id String [pk]
+  etnia String [not null]
+  beneficiarios Ba_Beneficiarios [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  excluido Boolean [not null, default: false]
+}
+
+Table Ba_Eventos {
+  id String [pk]
+  nome String [not null]
+  data DateTime [not null]
+  modalidade String [not null]
+  benefAssoc Ba_Beneficiarios [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  localEvento Ba_Locais_Eventos
+  local_EventoId String
+  tipoEvento Ba_Tipos_Eventos
+  tipo_eventoId String
+  acao_Cr Ba_Acoes_Cr [not null]
+  comunicado Ba_Comunicados [not null]
+  evento_lista_Presenca Ba_Eventos_Lista_Presenca [not null]
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Eventos_Lista_Presenca {
+  id String [pk]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  eventoId String
+  evento Ba_Eventos
+  benefAssocId String
+  benefAssoc Ba_Beneficiarios
+  historico Ba_Historico
+  historicoId String
+}
+
+Table Ba_Formacao {
+  id String [pk]
+  nome String [unique, not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  beneficiarios Ba_Beneficiarios [not null]
+  eixo Ba_Eixo_Formacao
+  eixo_FormacaoId String
+}
+
+Table Ba_Historico {
+  id String [pk]
+  descricao String [not null]
+  sigiloso Boolean [not null, default: false]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipoHistorico_Id String
+  tipoHistorico Ba_Historico_Tipo
+  beneficiario Ba_Beneficiarios [not null]
+  oficio Ba_Oficios [not null]
+  oficiosEnviados Ba_Oficios_Enviados [not null]
+  eventos Ba_Eventos [not null]
+  eventosListaPresenca Ba_Eventos_Lista_Presenca [not null]
+  acoesCr Ba_Acoes_Cr [not null]
+  contatosAcoesCr Ba_Contatos_Acoes_Cr [not null]
+  comunicados Ba_Comunicados [not null]
+  comunicadosEnviados Ba_Comunicados_Enviados [not null]
+  contatosBeneficiarios Ba_Contatos_Beneficiarios [not null]
+  documentos Ba_Documentos [not null]
+  vaga Ba_Vaga [not null]
+  situacaoVaga Ba_Situacoes_Vaga [not null]
+  remessaSec Ba_RemessaSec [not null]
+  materialEntregue Ba_Materiais_Entregues [not null]
+}
+
+Table Ba_Historico_Tipo {
+  id String [pk]
+  nome String [unique, not null]
+  sigiloso Boolean [not null, default: false]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  historico Ba_Historico [not null]
+}
+
+Table Ba_Locais_Eventos {
+  id String [pk]
+  nome String [unique, not null]
+  cep String [not null]
+  logradouro String [not null]
+  complemento String
+  bairro String [not null]
+  cidade String [not null]
+  uf String [not null]
+  email String
+  num_contato String
+  eventos Ba_Eventos [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Materiais {
+  id String [pk]
+  nome String [unique, not null]
+  descricao String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  beneficiarios Ba_Beneficiarios [not null]
+  materiaisEntregues Ba_Materiais_Entregues [not null]
+}
+
+Table Ba_Materiais_Entregues {
+  id String [pk]
+  dataEntrega DateTime [not null]
+  observacao String
+  quantidade Int [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipo Ba_Materiais
+  tipoMaterial_Id String
+  beneficiario Ba_Beneficiarios
+  beneficiarios_Id String
+  tamanhoEntregue Ba_TamanhoUniforme
+  tamanhoUniforme_Id String
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Monitoramentos {
+  id String [pk]
+  dataMonitoramento DateTime [not null]
+  presencaTecnico Boolean [not null, default: true]
+  tipoMonitoramento String [not null]
+  registrosVisitacao String [not null]
+  desvioFuncao Boolean [not null, default: false]
+  desvioFuncaoTipo String
+  desvioFuncaoDescricao String
+  gravidez Boolean
+  acidenteTrabalho Boolean [not null, default: false]
+  acidenteTrabalhoDescricao String
+  impressoesConhecimento String [not null]
+  impressoesHabilidade String [not null]
+  impressoesAutonomia String [not null]
+  impressoesPontualidade String [not null]
+  impressoesMotivacao String [not null]
+  impressoesExperienciaCompFormacao String [not null]
+  observacoesEquipePpe String
+  metaType String [not null]
+  autoAvaliacao_anexoId String
+  benefPontoFocal_anexoId String
+  ambienteTrabalho_anexoId String
+  beneficiario_Id String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  beneficiario Ba_Beneficiarios [not null]
+  monitoramentoComprovacao Ba_Monitoramentos_Comprovacoes
+  monitoramentoComprovacao_Id String
+  monitor Ba_Monitores
+  monitor_Id String
+}
+
+Table Ba_Monitoramentos_Comprovacoes {
+  id String [pk]
+  monitoramento Ba_Monitoramentos [not null]
+  anexoId String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Monitores {
+  id String [pk]
+  matricula Int [unique, not null]
+  nome String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  escritoriosRegionais Ba_Escritorio_Regional [not null]
+  demandantes Ba_Demandantes [not null]
+  monitoramentos Ba_Monitoramentos [not null]
+}
+
+Table Ba_Municipios {
+  id String [pk]
+  idIBGE Int [unique, not null]
+  nome String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  escritorioRegional Ba_Escritorio_Regional
+  escritorio_RegionalId String
+  territorioIdentidade Ba_TerritoriosIdentidade
+  territorioIdentidade_Id String
+  vagas Ba_Vaga [not null]
+}
+
+Table Ba_Oficio_Template {
+  id String [pk]
+  titulo String [unique, not null]
+  descricao String
+  conteudo String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipo Ba_Oficio_Tipo
+  oficio_TipoId String
+  oficios Ba_Oficios [not null]
+}
+
+Table Ba_Oficio_Tipo {
+  id String [pk]
+  sigla String [unique, not null]
+  descricao String [unique, not null]
+  excluido Boolean [not null, default: false]
+  oficios Ba_Oficio_Template [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Oficios {
+  id String [pk]
+  codOficio Int [increment, not null]
+  assunto String [not null]
+  conteudoEmail String [not null]
+  anexosId String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  remetenteOficio_Id String
+  templateOficio_Id String [not null]
+  benefAssoc Ba_Beneficiarios [not null]
+  enviosOficios Ba_Oficios_Enviados [not null]
+  templateOficio Ba_Oficio_Template [not null]
+  remetenteOficio Ba_Comunicados_Remetentes
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Oficios_Enviados {
+  id String [pk]
+  enviado Boolean [not null, default: false]
+  conteudoEmail String [not null]
+  conteudoOficio String [not null]
+  anexosId String
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  oficio_Id String
+  beneficiario_Id String
+  oficio Ba_Oficios
+  beneficiario Ba_Beneficiarios
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Pendencias {
+  id String [pk]
+  pendente Boolean [not null, default: true]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  beneficiarios Ba_Beneficiarios [not null]
+  tipoPendencia Ba_Pendencias_Tipos
+  tipoPendencia_Id String
+}
+
+Table Ba_Pendencias_Tipos {
+  id String [pk]
+  label String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  pendencias Ba_Pendencias [not null]
+}
+
+Table Ba_RemessaSec {
+  id String [pk]
+  remessa Int [not null]
+  data_remessa DateTime [not null]
+  arquivo_importacao String [not null]
+  vaga Ba_Vaga [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  excluido Boolean [not null, default: false]
+  historico Ba_Historico
+  historico_Id String
+}
+
+Table Ba_Situacoes_Vaga {
+  id String [pk]
+  nome String [unique, not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  tipoSituacao Ba_Tipos_Situacoes_Vaga
+  tipoSituacao_Id String
+  vagas Ba_Vaga [not null]
+  historicos Ba_Historico [not null]
+}
+
+Table Ba_TamanhoUniforme {
+  id String [pk]
+  tamanho String [not null]
+  beneficiarios Ba_Beneficiarios [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  excluido Boolean [not null, default: false]
+  materiaisEntregues Ba_Materiais_Entregues [not null]
+}
+
+Table Ba_TerritoriosIdentidade {
+  id String [pk]
+  nome String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  municipios Ba_Municipios [not null]
+}
+
+Table Ba_Tipos_Acoes_Cr {
+  id String [pk]
+  nome String [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  acoes Ba_Acoes_Cr [not null]
+}
+
+Table Ba_Tipos_Eventos {
+  id String [pk]
+  nome String [unique, not null]
+  eventos Ba_Eventos [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Tipos_Situacoes_Vaga {
+  id String [pk]
+  nome String [unique, not null]
+  situacoesVaga Ba_Situacoes_Vaga [not null]
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Ba_Unidade_Lotacao {
+  id String [pk]
+  nome String [unique, not null]
+  cep String [not null]
+  logradouro String [not null]
+  complemento String
+  bairro String [not null]
+  municipio String [not null]
+  uf String [not null]
+  pontoFocal Ba_Unidade_Lotacao_Ponto_Focal [not null]
+  vaga Ba_Vaga [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  excluido Boolean [not null, default: false]
+}
+
+Table Ba_Unidade_Lotacao_Ponto_Focal {
+  id String [pk]
+  nome String [not null]
+  contato Ba_Contatos_Pontos_Focais [not null]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  excluido Boolean [not null, default: false]
+  unidadeLotacao_Id String
+  unidadeLotacao Ba_Unidade_Lotacao
+}
+
+Table Ba_Vaga {
+  id String [pk]
+  dataConvocacao DateTime [not null]
+  publicadoDiarioOficial Boolean [not null, default: false]
+  observacao String
+  excluido Boolean [not null, default: false]
+  createdBy String [not null, default: 'SISTEMA']
+  updatedBy String [not null, default: 'SISTEMA']
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  situacaoVaga_Id String
+  remessaSec_Id String
+  unidadeLotacao_Id String
+  demandante_Id String
+  municipio Ba_Municipios
+  remessaSec Ba_RemessaSec
+  situacaoVaga Ba_Situacoes_Vaga
+  unidadeLotacao Ba_Unidade_Lotacao
+  beneficiario Ba_Beneficiarios
+  beneficiario_Id String
+  demandante Ba_Demandantes
+  historico Ba_Historico
+  historico_Id String
+  municipio_Id String
+}
+
+Ref: Ba_Acoes_Cr.evento_id > Ba_Eventos.id
+
+Ref: Ba_Acoes_Cr.tipoAcaoCr_Id > Ba_Tipos_Acoes_Cr.id
+
+Ref: Ba_Acoes_Cr.historico_Id > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Beneficiarios.etnia_Id > Ba_Etnia.id
+
+Ref: Ba_Beneficiarios.formacao_Id > Ba_Formacao.id
+
+Ref: Ba_Beneficiarios.tamanhoUniforme_Id > Ba_TamanhoUniforme.id
+
+Ref: Ba_Comunicados.remetenteComunicado_Id > Ba_Comunicados_Remetentes.id
+
+Ref: Ba_Comunicados.historico_Id > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Comunicados.evento_Id > Ba_Eventos.id
+
+Ref: Ba_Comunicados_Enviados.comunicado_Id > Ba_Comunicados.id
+
+Ref: Ba_Comunicados_Enviados.beneficiario_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Comunicados_Enviados.historico_Id > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Contatos_Acoes_Cr.acaoCr_id > Ba_Acoes_Cr.id
+
+Ref: Ba_Contatos_Acoes_Cr.beneficiario_id > Ba_Beneficiarios.id
+
+Ref: Ba_Contatos_Acoes_Cr.colabCr_id > Ba_Colaboradores_Cr.id
+
+Ref: Ba_Contatos_Acoes_Cr.historico_Id > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Contatos_Beneficiarios.tipoContato_Id > Ba_Contatos_Tipos.id
+
+Ref: Ba_Contatos_Beneficiarios.benefAssoc_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Contatos_Beneficiarios.historico_Id > Ba_Historico.id
+
+Ref: Ba_Contatos_Pontos_Focais.tipoContato_Id > Ba_Contatos_Tipos.id
+
+Ref: Ba_Contatos_Pontos_Focais.pontoFocal_Id > Ba_Unidade_Lotacao_Ponto_Focal.id
+
+Ref: Ba_Documentos.benefAssoc_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Documentos.historico_Id > Ba_Historico.id
+
+Ref: Ba_Eventos.local_EventoId > Ba_Locais_Eventos.id
+
+Ref: Ba_Eventos.tipo_eventoId > Ba_Tipos_Eventos.id
+
+Ref: Ba_Eventos.historico_Id > Ba_Historico.id
+
+Ref: Ba_Eventos_Lista_Presenca.eventoId > Ba_Eventos.id [delete: No Action]
+
+Ref: Ba_Eventos_Lista_Presenca.benefAssocId > Ba_Beneficiarios.id
+
+Ref: Ba_Eventos_Lista_Presenca.historicoId > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Formacao.eixo_FormacaoId > Ba_Eixo_Formacao.id
+
+Ref: Ba_Historico.tipoHistorico_Id > Ba_Historico_Tipo.id
+
+Ref: Ba_Materiais_Entregues.tipoMaterial_Id > Ba_Materiais.id
+
+Ref: Ba_Materiais_Entregues.beneficiarios_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Materiais_Entregues.tamanhoUniforme_Id > Ba_TamanhoUniforme.id [delete: No Action]
+
+Ref: Ba_Materiais_Entregues.historico_Id > Ba_Historico.id
+
+Ref: Ba_Monitoramentos.beneficiario_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Monitoramentos.monitoramentoComprovacao_Id > Ba_Monitoramentos_Comprovacoes.id
+
+Ref: Ba_Monitoramentos.monitor_Id > Ba_Monitores.id
+
+Ref: Ba_Municipios.escritorio_RegionalId > Ba_Escritorio_Regional.id
+
+Ref: Ba_Municipios.territorioIdentidade_Id > Ba_TerritoriosIdentidade.id
+
+Ref: Ba_Oficio_Template.oficio_TipoId > Ba_Oficio_Tipo.id
+
+Ref: Ba_Oficios.templateOficio_Id > Ba_Oficio_Template.id
+
+Ref: Ba_Oficios.remetenteOficio_Id > Ba_Comunicados_Remetentes.id
+
+Ref: Ba_Oficios.historico_Id > Ba_Historico.id
+
+Ref: Ba_Oficios_Enviados.oficio_Id > Ba_Oficios.id
+
+Ref: Ba_Oficios_Enviados.beneficiario_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Oficios_Enviados.historico_Id > Ba_Historico.id [delete: No Action]
+
+Ref: Ba_Pendencias.tipoPendencia_Id > Ba_Pendencias_Tipos.id
+
+Ref: Ba_RemessaSec.historico_Id > Ba_Historico.id
+
+Ref: Ba_Situacoes_Vaga.tipoSituacao_Id > Ba_Tipos_Situacoes_Vaga.id
+
+Ref: Ba_Unidade_Lotacao_Ponto_Focal.unidadeLotacao_Id > Ba_Unidade_Lotacao.id
+
+Ref: Ba_Vaga.municipio_Id > Ba_Municipios.id
+
+Ref: Ba_Vaga.remessaSec_Id > Ba_RemessaSec.id
+
+Ref: Ba_Vaga.situacaoVaga_Id > Ba_Situacoes_Vaga.id
+
+Ref: Ba_Vaga.unidadeLotacao_Id > Ba_Unidade_Lotacao.id
+
+Ref: Ba_Vaga.beneficiario_Id > Ba_Beneficiarios.id
+
+Ref: Ba_Vaga.demandante_Id > Ba_Demandantes.id
+
+Ref: Ba_Vaga.historico_Id > Ba_Historico.id [delete: No Action]

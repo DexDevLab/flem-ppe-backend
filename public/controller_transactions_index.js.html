@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding favicon -->
+    
+
+    <!-- Adding meta -->
+    
+    
+    <meta name="author" content="https://github.com/DexDevLab" />
+    
+    <meta name="author" content="https://github.com/rodsl" />
+    
+    <meta name="description" content="Aplicação Backend para o Portal Programa Primeiro Emprego, da FLEM" />
+    
+    
+
+    <!-- Adding external script-->
+    
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous" ></script>
+    
+    
+
+    <!-- Adding external style-->
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+    
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"
+      integrity="sha512-5R3ngaUdvyhXkQkIqTf/k+Noq3phjmrqlUQyQYbgfI34Mzcx7vLIIYTy/K1VMHkL33T709kfh5y6R9Xy/Cbt7Q=="
+      crossorigin="anonymous"></script>
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      controller/transactions/index.js
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
+      
+        <div class="navbar-resize" id="navbar-resize">
+          <div class="resize-dots-container">
+            <div class="dots"></div>
+            <div class="dots"></div>
+            <div class="dots"></div>
+          </div> 
+        </div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        controller/transactions/index.js
+      </h1>
+      
+
+      
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { getDemandantes } from "controller/demandantes";
+import { getEtnias } from "controller/etnias";
+import { getFormacao } from "controller/formacoes";
+import {
+  addHistorico,
+  getTiposHistorico,
+  updateHistoricoforImport,
+} from "controller/historicos";
+import { getMunicipios } from "controller/municipios";
+import { prisma } from "services";
+import { exceptionHandler } from "utils/exceptionHandler";
+
+/**
+ * Transaction que reúne um conjunto de queries que fornece:
+ * Demandantes, Municípios, Etnias e Formações.
+ * @method getDemandMunicEtniaFormacao
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @returns {Object} Objeto contendo um Array de resultados.
+ */
+export async function getDemandMunicEtniaFormacao(entity) {
+  try {
+    const queries = await prisma.$transaction(async (prisma) => {
+      const demand = await getDemandantes(entity);
+      const munic = await getMunicipios(entity);
+      const etnias = await getEtnias(entity);
+      const formacoes = await getFormacao(entity);
+      return [demand, munic, etnias, formacoes];
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que reúne um conjunto de queries que fornece:
+ * ID do Demandante, ID do Município, ID da Formação, e ID da Etnia.
+ * Utilizado para correlacionar o ID das colunas na planilha de importação
+ * com o ID encontrado no BD.
+ * @method getColumnsIdToImport
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {String} demand o demandante
+ * @param {String} municVaga o município da vaga
+ * @param {String} formacao a formação
+ * @param {String} etnia a etnia
+ * @returns {Array} Array de resultados.
+ */
+export async function getColumnsIdToImport(
+  entity,
+  demand,
+  municVaga,
+  formacao,
+  etnia
+) {
+  try {
+    const queries = await prisma.$transaction(async (prisma) => {
+      const demands = await getDemandantes(
+        entity,
+        { ["nome"]: demand.replace(/.*- /, "") },
+        1
+      );
+      const munic = await getMunicipios(
+        entity,
+        { ["nome"]: municVaga.toLowerCase() },
+        1
+      );
+      const etnias = await getEtnias(entity, { ["etnia"]: etnia }, 1);
+      const formacoes = await getFormacao(entity, { ["nome"]: formacao }, 1);
+      return [demands[0].id, munic[0].id, formacoes[0].id, etnias[0].id];
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que reúne um conjunto de beneficiários para atualizar
+ * @method createUpsertBenefsFromImport
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {Array} benefsToCreate Array contendo os beneficiários que serão
+ * incluídos
+ * @returns {Promise} Promise contendo as queries de transação do array de
+ * beneficiários.
+ */
+export async function createUpsertBenefsFromImport(entity, benefsToCreate) {
+  try {
+    const table = `${entity}_Beneficiarios`;
+    const queries = await prisma.$transaction(
+      benefsToCreate.map((data) =>
+        prisma[table].upsert({
+          create: data,
+          update: data,
+          where: {
+            matriculaSec: data.matriculaSec,
+          },
+          include: {
+            vaga: true,
+          },
+        })
+      )
+    );
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que reúne um conjunto históricos a serem adicionados individualmente
+ * com a importação dos beneficiários.
+ * @method createHistoricoToBenefFromImport
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {Object} queryRemessa Objeto contendo o resultado da query de inclusão
+ * da remessa no BD
+ * @param {Number} numRemessa Número da remessa
+ * @param {Array} benefList Array contendo os beneficiários que serão
+ * incluídos
+ * @returns {Promise} Promise contendo as queries de transação do array de
+ * beneficiários.
+ */
+export async function createHistoricoToBenefFromImport(
+  entity,
+  queryRemessa,
+  numRemessa,
+  benefList
+) {
+  try {
+    const queries = prisma.$transaction(async (prisma) => {
+      const tipoHistoricoId = await getTiposHistorico(
+        entity,
+        {
+          ["nome"]: "Vaga",
+        },
+        1
+      );
+
+      const create = await addHistorico(
+        entity,
+        `Atribuída nova vaga ao beneficiário. Remessa nº ${numRemessa}`,
+        tipoHistoricoId[0].id
+      );
+
+      const idVaga = new Array().concat(
+        ...benefList.map(({ vaga }) => {
+          return vaga.map(({ id }) => ({ id }));
+        })
+      );
+      const idBeneficiario = benefList.map(({ id }) => ({ id }));
+      const update = await updateHistoricoforImport(
+        entity,
+        idVaga,
+        idBeneficiario,
+        queryRemessa.id,
+        create.id
+      );
+
+      return { create, update };
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+
+/**
+ * Transaction que reúne um conjunto de envios a serem criados baseado em um conjunto
+ * de emails.
+ * @method createEnvios
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {Array} enviosToCreate Array contendo os envios.
+ * @returns {Object} Objeto contendo um Array de resultados.
+ */
+export async function createEnvios(entity, enviosToCreate) {
+  try {
+    const table = `${entity}_Comunicados_Enviados`;
+    const { mailDetails, ...rest } = enviosToCreate;
+    const queries = prisma.$transaction(async (prisma) => {
+      return await prisma[table].create({ data: rest });
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que reúne um conjunto de pendências a serem inseridas para um
+ * beneficiário específico.
+ * @method pendenciasToUpsert
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {String} idBeneficiario o ID do beneficiário
+ * @param {Object} pendencias Objeto contendo uma listagem de pendências para
+ * o beneficiário.
+ * @returns {Object} Objeto contendo um Array de resultados.
+ */
+export async function pendenciasToUpsert(entity, idBeneficiario, pendencias) {
+  try {
+    const table = `${entity}_Beneficiarios`;
+
+    const queries = await prisma.$transaction(async (prisma) => {
+      const pendenciasBeneficiario = await prisma[table]
+        .findFirst({
+          where: {
+            id: idBeneficiario,
+          },
+        })
+        .pendencias();
+
+      const pendenciasToCreate = Object.keys(pendencias)
+        .map((key) => ({
+          tipoPendencia_Id: key,
+          value: pendencias[key],
+        }))
+        .filter(
+          ({ tipoPendencia_Id }) =>
+            !pendenciasBeneficiario
+              .map(({ tipoPendencia_Id }) => tipoPendencia_Id)
+              .includes(tipoPendencia_Id)
+        )
+        .filter(({ value }) => value);
+
+      const pendenciasToUpdate = Object.keys(pendencias)
+        .map((key) => ({
+          tipoPendencia_Id: key,
+          value: pendencias[key],
+        }))
+        .filter(({ tipoPendencia_Id }) =>
+          pendenciasBeneficiario
+            .map(({ tipoPendencia_Id }) => tipoPendencia_Id)
+            .includes(tipoPendencia_Id)
+        )
+        .filter(({ value }) => value);
+
+      return { create: pendenciasToCreate, update: pendenciasToUpdate };
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que valida e verifica quais contatos devem ser criados e quais
+ * devem ser atualizados, considerando um Array de contatos de um beneficiário.
+ * @method contatosToCreateAndUpdate
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {String} idBeneficiario o ID do beneficiário
+ * @param {Array} listaContatos um Array contendo uma lista de contatos.
+ * @returns {Array} Array de Objetos contendo os contatos a serem criados
+ * e os que serão atualizados.
+ */
+export async function contatosToCreateAndUpdate(
+  entity,
+  idBeneficiario,
+  listaContatos
+) {
+  try {
+    const table = `${entity}_Contatos_Beneficiarios`;
+    const queries = await prisma.$transaction(async (prisma) => {
+      const getContatos = await prisma[table].findMany({
+        where: {
+          AND: [
+            {
+              contato: {
+                in: listaContatos.map(({ contato }) => contato),
+              },
+            },
+            {
+              benefAssoc_Id: idBeneficiario,
+            },
+          ],
+        },
+      });
+
+      const contatosCreate = listaContatos.filter(({ contato }) => {
+        if (getContatos.length) {
+          return !getContatos.map(({ contato }) => contato).includes(contato);
+        } else {
+          return true;
+        }
+      });
+
+      const contatosUpdate = listaContatos.filter(({ contato }) => {
+        if (getContatos.length) {
+          return getContatos.map(({ contato }) => contato).includes(contato);
+        } else {
+          return true;
+        }
+      });
+      return [contatosCreate, contatosUpdate];
+    });
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+
+/**
+ * Transaction que modifica todos os dados pertinentes a um beneficiário.
+ * @method updateBenefData
+ * @memberof module:transactions
+ * @param {String} entity a localidade do Projeto (por exemplo, "ba" para Bahia)
+ * @param {String} idBeneficiario o ID do beneficiário no sistema
+ * @param {Object} dadosBeneficiario detalhes do beneficiário:
+ *
+ * pendencias - documentos em pendência do beneficiário
+ *
+ * territorio - território de identidade da vaga
+ *
+ * eixoFormacao_Id - ID do Eixo de Formação do Beneficiário
+ *
+ * matriculaFlem - Número de Matrícula FLEM do beneficiário
+ *
+ * superiorPeriodo - Em que período o beneficiário está cursando no momento
+ *
+ * superiorAnoInicio - Ano de início do ingresso ao Ensino Superior
+ *
+ * superiorAnoConclusao - Ano de conclusão do beneficiário no Curso Superior
+ *
+ * email - email do beneficiário
+ *
+ * obsEmail - detalhes e observação sobre o email do beneficiário
+ *
+ * telefone - número de telefone do beneficiário
+ *
+ * obsTelefone - detalhes e observação sobre o número de telefone do beneficiário
+ *
+ * dataEntregaMaterial - data de entrega de materiais ao beneficiário
+ *
+ * idMaterial - ID do material recebido
+ *
+ * idTamanho - ID do tamanho do material recebido
+ *
+ * qtdMaterial - quantidade do material recebido
+ *
+ * obsMaterial - observações sobre o material recebido
+ *
+ * idCatHistorico - ID da categoria do histórico
+ *
+ * descricaoHistorico - descrição do histórico
+ *
+ * histSigiloso - se o histórico é sigiloso ou não
+ *
+ * demandante_Id - ID do demandante
+ *
+ * situacaoVaga_Id - ID da situação da vaga
+ *
+ * situacaoVagaHasChanged - se a situação da vaga mudou
+ *
+ * unidadeLotacao_Id - ID da unidade de lotação
+ *
+ * publicadoDiarioOficial - se foi publicado no diário oficial
+ *
+ * vaga_municipio_Id - ID do município da vaga
+ *
+ * anexos - documentos anexados
+ *
+ * descricaoDocumento - descrição do documento anexado
+ *
+ * docSigiloso - se o documento é sigiloso
+ *
+ * @returns {Object} Objeto contendo um Array de resultados.
+ */
+export async function updateBenefData(
+  entity,
+  idBeneficiario,
+  dadosBeneficiario
+) {
+  try {
+    const {
+      pendencias,
+      territorio,
+      eixoFormacao_Id,
+      matriculaFlem,
+      superiorPeriodo,
+      superiorAnoInicio,
+      superiorAnoConclusao,
+      email,
+      obsEmail = [],
+      telefone,
+      obsTelefone = [],
+      dataEntregaMaterial,
+      idMaterial,
+      idTamanho,
+      qtdMaterial,
+      obsMaterial,
+      idCatHistorico,
+      descricaoHistorico,
+      histSigiloso,
+      // Vaga
+      demandante_Id,
+      situacaoVaga_Id,
+      situacaoVagaHasChanged,
+      unidadeLotacao_Id,
+      publicadoDiarioOficial,
+      vaga_municipio_Id,
+      // Anexos
+      anexos,
+      descricaoDocumento,
+      docSigiloso,
+      ...formData
+    } = dadosBeneficiario;
+
+    const table = `${entity}_Beneficiarios`;
+    const tableMateriaisEntregues = `${entity}_Materiais_Entregues`;
+    const tableHistorico = `${entity}_Historico`;
+    const tableDocumentos = `${entity}_Documentos`;
+    const tablePendencias = `${entity}_Pendencias`;
+    const tableContatosBeneficiarios = `${entity}_Contatos_Beneficiarios`;
+    const tableVagas = `${entity}_Vaga`;
+
+    const listaContatos = () => {
+      const arr = [];
+      if (Array.isArray(email)) {
+        arr.push(
+          ...email
+            .filter((con) => con)
+            .map((email) => ({
+              contato: email,
+              observacao: _.isEmpty(obsEmail[idx]) ? null : obsEmail[idx],
+              tipoContato_Id: "email",
+            }))
+        );
+      }
+      if (Array.isArray(telefone)) {
+        arr.push(
+          ...telefone
+            .filter((con) => con)
+            .map((telefone) => ({
+              contato: telefone,
+              observacao: _.isEmpty(obsTelefone[idx]) ? null : obsTelefone[idx],
+              tipoContato_Id: "telefone",
+            }))
+        );
+      }
+      return arr;
+    };
+
+    const addMaterial = () => {
+      if ((dataEntregaMaterial, idMaterial, idTamanho, qtdMaterial)) {
+        return [
+          prisma[tableMateriaisEntregues].create({
+            data: {
+              beneficiarios_Id: idBeneficiario,
+              tamanhoUniforme_Id: idTamanho,
+              tipoMaterial_Id: idMaterial,
+              observacao: obsMaterial,
+              dataEntrega: dataEntregaMaterial,
+              quantidade: parseInt(qtdMaterial),
+            },
+            include: {
+              tamanhoEntregue: true,
+              tipo: true,
+            },
+          }),
+        ];
+      } else return [prisma.$queryRaw``];
+    };
+
+    const addHistorico = () => {
+      if ((idCatHistorico, descricaoHistorico, histSigiloso)) {
+        return [
+          prisma[tableHistorico].create({
+            data: {
+              descricao: descricaoHistorico,
+              tipoHistorico_Id: idCatHistorico,
+              sigiloso: JSON.parse(histSigiloso),
+              beneficiario: {
+                connect: {
+                  id: idBeneficiario,
+                },
+              },
+            },
+          }),
+        ];
+      } else return [prisma.$queryRaw``];
+    };
+
+    const addDocumento = () => {
+      if ((anexos, descricaoDocumento, docSigiloso)) {
+        return [
+          prisma[tableDocumentos].create({
+            data: {
+              descricao: descricaoDocumento,
+              sigiloso: JSON.parse(docSigiloso),
+              benefAssoc_Id: idBeneficiario,
+              anexosId: JSON.stringify([{ id: anexos.id }]),
+            },
+          }),
+        ];
+      } else return [prisma.$queryRaw``];
+    };
+
+    const pendenciasUpsert = await pendenciasToUpsert(
+      entity,
+      idBeneficiario,
+      pendencias
+    );
+
+    const [contatosToCreate, contatosToUpdate] =
+      await contatosToCreateAndUpdate(entity, idBeneficiario, listaContatos());
+
+    const queries = await prisma.$transaction([
+      ...addDocumento(),
+      ...addMaterial(),
+      ...addHistorico(),
+      prisma[tablePendencias].updateMany({
+        data: {
+          pendente: false,
+        },
+        where: {
+          beneficiarios: {
+            some: {
+              id: idBeneficiario,
+            },
+          },
+        },
+      }),
+      prisma[tablePendencias].updateMany({
+        data: {
+          pendente: true,
+        },
+        where: {
+          beneficiarios: {
+            some: {
+              id: idBeneficiario,
+            },
+          },
+          tipoPendencia_Id: {
+            in: pendenciasUpsert.update.map(
+              ({ tipoPendencia_Id }) => tipoPendencia_Id
+            ),
+          },
+        },
+      }),
+      ...pendenciasUpsert.create.map(({ tipoPendencia_Id }) =>
+        prisma[tablePendencias].create({
+          data: {
+            tipoPendencia_Id,
+            beneficiarios: {
+              connect: {
+                id: idBeneficiario,
+              },
+            },
+          },
+        })
+      ),
+      prisma[tableContatosBeneficiarios].deleteMany({
+        where: {
+          AND: [
+            {
+              contato: {
+                notIn: listaContatos().map(({ contato }) => contato),
+              },
+            },
+            {
+              benefAssoc_Id: idBeneficiario,
+            },
+          ],
+        },
+      }),
+      prisma[table].update({
+        data: {
+          ...formData,
+          superiorAnoInicio: parseInt(superiorAnoInicio) || null,
+          superiorAnoConclusao: parseInt(superiorAnoConclusao) || null,
+          superiorPeriodo: parseInt(superiorPeriodo) || null,
+          matriculaFlem: parseInt(matriculaFlem) || null,
+          contatos: {
+            createMany: {
+              data: contatosToCreate,
+            },
+            updateMany: contatosToUpdate.map((data) => ({
+              data,
+              where: {
+                contato: data.contato,
+              },
+            })),
+          },
+          vaga: {
+            update: {
+              data: {
+                demandante_Id,
+                situacaoVaga_Id,
+                publicadoDiarioOficial,
+                municipio_Id: vaga_municipio_Id,
+                unidadeLotacao_Id,
+              },
+              where: {
+                id: (
+                  await prisma[tableVagas].findFirst({
+                    where: {
+                      beneficiario_Id: idBeneficiario,
+                    },
+                    orderBy: {
+                      createdAt: "desc",
+                    },
+                  })
+                ).id,
+              },
+            },
+          },
+        },
+        where: {
+          id: idBeneficiario,
+        },
+        include: {
+          vaga: {
+            select: {
+              id: true,
+              createdAt: true,
+            },
+            take: 1,
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
+        },
+      }),
+    ]);
+    return queries;
+  } catch (e) {
+    throw exceptionHandler(e, 0);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      Made with ☕️ by <a href='https://github.com/frtechdev'>FR Technologies</a>
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
+        var options = {}
+          setupSearch(list, options)
+      </script>
+    
+
+    
+    <script type="text/javascript">
+        function foo(){console.log('foo')}
+    </script>
+    
+
+    
+      <script src="scripts/resize.js"></script>
+      <script type="text/javascript">
+        var option = {"min":"300","max":"600"}
+        setupResizeOptions(option)
+      </script>
+    
+
+    
+    <script type="text/javascript">
+    var option = JSON.parse('{"options":{}}')
+      document.addEventListener("DOMContentLoaded", function () {
+        OverlayScrollbars(document.querySelectorAll('body'), option.option || {});
+      });
+    </script>
+    
+
+
+  </body>
+
+</html>

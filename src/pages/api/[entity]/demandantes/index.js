@@ -1,52 +1,107 @@
-import { fetchDemandantes } from "controller/api";
-import { allowCors } from "services/apiAllowCors";
+import {
+  addDemandante,
+  deleteDemandante,
+  getDemandantes,
+  modifyDemandante,
+} from "controller/demandantes";
+import _ from "lodash";
+import { allowCors } from "services";
+import { exceptionHandler } from "utils/exceptionHandler";
 
 /**
- * Fornece demandantes e listas de demandantes, conforme critérios (sigla e nome do demandante).
- * Recebe um request HTTP com os seguintes parâmetros:
- * entity - a entidade do Projeto (Bahia, Tocantins etc). É dinamicamente
- * atribuído pelo caminho da requisição à API.
- * sigla - a sigla do demandante.
- * demandante - o nome do demandante.
- * @param {Object} req HTTP request.
+ * Handler de manipulação de demandantes.
+ * @method handler
+ * @memberof module:demandantes
+ * @param {Object} req HTTP request
  * @param {Object} res HTTP response
- * @returns HTTP response como JSON contendo a resposta da query consultada.
+ * @returns {Object} HTTP response como JSON contendo a resposta da query consultada.
  */
 const handler = async (req, res) => {
-  try {
-    if (req.method === "GET") {
-      const { entity, sigla, demandante } = req.query;
-      //EM CARÁTER DE TESTE, ESTÁ GERANDO VIA API EXTERNA. ALTERAR PARA CONSULTA VIA BD INTERNO APÓS
-      // CRIAÇÃO DO ESQUEMA.
-      const fetch = await fetchDemandantes(entity);
-      if (sigla || demandante) {
-        const demand = fetch.filter((item) => {
-          if (item.sigla === sigla || item.demandante === demandante) {
+  switch (req.method) {
+    case "GET":
+      try {
+        const {
+          entity,
+          limit,
+          municipio_Id,
+          escritorioRegional_Id,
+          ...filter
+        } = req.query;
+        const queryFilter = () => {
+          if (
+            _.isUndefined(municipio_Id) &&
+            _.isUndefined(escritorioRegional_Id)
+          ) {
             return {
-              sigla: item.sigla,
-              demandante: item.demandante,
+              excluido: false,
+              ...filter,
+            };
+          } else {
+            return {
+              excluido: false,
+              vagas: {
+                some: {
+                  municipio_Id: _.isUndefined(municipio_Id)
+                    ? {}
+                    : {
+                        in: JSON.parse(municipio_Id),
+                      },
+                  municipio: _.isUndefined(escritorioRegional_Id)
+                    ? {}
+                    : {
+                        escritorio_RegionalId: {
+                          in: JSON.parse(escritorioRegional_Id),
+                        },
+                      },
+                },
+              },
             };
           }
-        });
-        return res.status(200).json({ status: "ok", demand });
-      } else {
-        const demand = fetch.map((item) => {
-          return {
-            sigla: item.sigla,
-            demandante: item.demandante,
-          };
-        });
-        return res.status(200).json({ status: "ok", demand });
+        };
+        const query = await getDemandantes(
+          entity,
+          queryFilter(),
+          limit,
+          municipio_Id,
+          escritorioRegional_Id
+        );
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
       }
-    }
-    else if (req.method === "PUT"){
-      // CRIAR MÉTODO PUT PARA INSERÇÃO NO BD
-    }
-    else{
-      return res.status(405).json({ status: 405, message: "METHOD NOT ALLOWED" });
-    }
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: "FALHA AO PROCESSAR A SOLICITAÇÃO HTTP.", error: error.message });
+    case "POST":
+      try {
+        const { entity } = req.query;
+        const { nome, sigla } = req.body;
+        const query = await addDemandante(entity, nome, sigla);
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    case "PUT":
+      try {
+        const { entity } = req.query;
+        const { nome, sigla, id } = req.body;
+        const query = await modifyDemandante(
+          entity,
+          nome,
+          sigla.toUpperCase(),
+          id
+        );
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    case "DELETE":
+      try {
+        const { entity, id } = req.query;
+        const query = await deleteDemandante(entity, id);
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    default:
+      return exceptionHandler(null, res);
   }
 };
 

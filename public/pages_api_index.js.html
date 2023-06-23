@@ -63,10 +63,6 @@
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
     
-    <style>
-      nav{background: yellow}
-    </style>
-    
     <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="display:none">
     <defs>
@@ -107,7 +103,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="2005099" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#benefLookupTeste">benefLookupTeste</a></li><li class="accordion-list" id=""><a href="global.html#benefValidateTeste">benefValidateTeste</a></li><li class="accordion-list" id=""><a href="global.html#camelCase">camelCase</a></li><li class="accordion-list" id=""><a href="global.html#fetchDemandantes">fetchDemandantes</a></li><li class="accordion-list" id=""><a href="global.html#fetchMunicipios">fetchMunicipios</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#phoneNumberFixer">phoneNumberFixer</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li><li class="accordion-list" id=""><a href="global.html#upload">upload</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -141,26 +137,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>
-/**
+            <pre class="prettyprint source linenums"><code>/**
  * Rota de redirecionamento para a documentação
  * do jsdoc. Altera o título do documento, visto que
  * a biblioteca jsdoc não possui suporte nativo para
  * esta função.
+ * @method api
+ * @memberof module:api
  * @param {Object} req HTTP request.
  * @param {Object} res HTTP response.
  */
 export default async function api(req, res) {
-const fs = require('fs').promises;
-const docsIndex = "public/index.html";
-const docsTitle = "FLEM PPE Backend";
-const fileDocsIndex = await fs.readFile(docsIndex, 'utf8');
-const formattedDocsIndex = fileDocsIndex.replace(/Home/g, docsTitle);
-await fs.writeFile(docsIndex, formattedDocsIndex, "utf-8");
-res.setHeader("Content-Type", "text/html; charset=utf-8");
-res.write(formattedDocsIndex);
-res.end();
-}</code></pre>
+  const fs = require("fs").promises;
+  const docsIndex = "public/index.html";
+  const fileDocsIndex = await fs.readFile(docsIndex, "utf8");
+  // const docsTitle = "FLEM PPE Frontend";
+  
+  // const formattedDocsIndex = fileDocsIndex
+  //   .replace(/Home/g, docsTitle)
+  //   .replace(/Global/g, "Geral");
+  // await fs.writeFile(docsIndex, formattedDocsIndex, "utf-8");
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.write(fileDocsIndex);
+  res.end();
+}
+</code></pre>
         </article>
     </section>
 
@@ -185,7 +186,7 @@ res.end();
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"benefLookupTeste","link":"<a href=\"global.html#benefLookupTeste\">benefLookupTeste</a>"},{"title":"benefValidateTeste","link":"<a href=\"global.html#benefValidateTeste\">benefValidateTeste</a>"},{"title":"camelCase","link":"<a href=\"global.html#camelCase\">camelCase</a>"},{"title":"fetchDemandantes","link":"<a href=\"global.html#fetchDemandantes\">fetchDemandantes</a>"},{"title":"fetchMunicipios","link":"<a href=\"global.html#fetchMunicipios\">fetchMunicipios</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"phoneNumberFixer","link":"<a href=\"global.html#phoneNumberFixer\">phoneNumberFixer</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"},{"title":"upload","link":"<a href=\"global.html#upload\">upload</a>"}];
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>
