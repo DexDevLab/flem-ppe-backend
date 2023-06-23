@@ -63,10 +63,6 @@
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
     
-    <style>
-      nav{background: yellow}
-    </style>
-    
     <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="display:none">
     <defs>
@@ -107,7 +103,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="2005099" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#benefLookupTeste">benefLookupTeste</a></li><li class="accordion-list" id=""><a href="global.html#benefValidateTeste">benefValidateTeste</a></li><li class="accordion-list" id=""><a href="global.html#camelCase">camelCase</a></li><li class="accordion-list" id=""><a href="global.html#fetchDemandantes">fetchDemandantes</a></li><li class="accordion-list" id=""><a href="global.html#fetchMunicipios">fetchMunicipios</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#phoneNumberFixer">phoneNumberFixer</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li><li class="accordion-list" id=""><a href="global.html#upload">upload</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -148,154 +144,325 @@
 
 
     <section class="readme">
-        <article><hr>
-<h1 align="center">flem-ppe-backend</h1>
-<p align=center><i align="center">Aplicação Backend para o Portal PPE, para o cliente FLEM.</i></p>
-<hr>
+        <article><h1 align="center">Portal PPE - Backend</h1>
+<p align=center><i align="center">Aplicação Backend para o Projeto Primeiro Emprego, da FLEM</i></p>
+<br>
 <div align="center">
-<p><a href=""><a href="https://github.com/frtechdev/flem-ppe-backend"><img src="https://img.shields.io/lgtm/alerts/github/frtechdev/flem-ppe-backend" alt="Alerts"></a> </a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend"><img src="https://img.shields.io/lgtm/grade/javascript/github/frtechdev/flem-ppe-backend" alt="Grade"></a></a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend"><img src="https://img.shields.io/github/languages/code-size/frtechdev/flem-ppe-backend" alt="Code Size"></a></a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend"><img src="https://img.shields.io/github/repo-size/frtechdev/flem-ppe-backend" alt="Repo Size"></a></a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend/graphs/contributors"><img src="https://img.shields.io/github/contributors/frtechdev/flem-ppe-backend" alt="Contributors"></a></a><br>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend/"><img src="https://img.shields.io/github/last-commit/frtechdev/flem-ppe-backend" alt="Last Commit"></a> </a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend/fork"><img src="https://img.shields.io/github/forks/frtechdev/flem-ppe-backend" alt="Fork"></a> </a>
-<a href=""><img src="https://img.shields.io/badge/version-0.0.1-005bff" alt="Version"> </a>
-<a href=""><a href="https://github.com/frtechdev/flem-ppe-backend/LICENSE"><img src="https://img.shields.io/github/license/frtechdev/flem-ppe-backend" alt="license"></a></a>
-<br></p>
+<p><a href="https://www.javascript.com"><img src="https://img.shields.io/badge/JavaScript-%23323330.svg?logo=javascript&logoColor=%23F7DF1E" height="22" alt="JavaScript"/></a>
+<a href="https://nodejs.org/en/"><img src="https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white" height="22" alt="NodeJS"/></a>
+<a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next-black?logo=next.js&logoColor=white" height="22" alt="NextJS"/></a>
+<a href="https://www.prisma.io"><img src="https://img.shields.io/badge/Prisma-3982CE?logo=Prisma&logoColor=white" height="22" alt="PrismaIO"/></a>
+<a href="https://www.microsoft.com/pt-br/sql-server/sql-server-2019"><img src="https://img.shields.io/badge/Microsoft%20SQL%20Sever-CC2927?logo=microsoft%20sql%20server&logoColor=white" height="22" alt="MSSQLServer"/></a></p>
+<p><a href=""><img src="https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg" height="22" alt="Maintenance-actively-developed"/></a>
+<a href=""><img src="https://img.shields.io/github/last-commit/frtechdev/flem-ppe-backend" height="22" alt="LastCommit"></a>
+<a href=""><img src="https://snyk.io/test/github/frtechdev/flem-ppe-backend/badge.svg" height="22" alt="Snyk"/></a></p>
+<p><a href=""><img src="https://img.shields.io/github/repo-size/frtechdev/flem-ppe-backend" height="22" alt="RepoSize"/></a>
+<a href=""><img src="https://img.shields.io/github/languages/code-size/frtechdev/flem-ppe-backend" height="22" alt="CodeSize"/></a>
+<a href=""><img src="https://img.shields.io/github/contributors/frtechdev/flem-ppe-backend" height="22" alt="Contributors"></a></p>
+<p><a href=""><img src="https://img.shields.io/github/forks/frtechdev/flem-ppe-backend" height="22" alt="Fork"></a>
+<a href=""><img src="https://img.shields.io/github/release/DexDevLab/flem-ppe-backend.svg" height="22" alt="LatestRelease"></a>
+<a href="https://github.com/frtechdev/flem-ppe-backend/blob/main/LICENSE"><img src="https://img.shields.io/github/license/frtechdev/flem-ppe-backend" height="22" alt="License"></a></p>
+<p>|| <a href="#section-conteudo">Conteúdo</a> || <a href="#section-caracteristicas">Características</a> || <a href="#section-stack">Stack</a> || <a href="#section-documentacao">Documentação</a> || <a href="#section-instrucoes">Instruções</a> ||</p>
+<p>|| <a href="#section-vars">Variáveis de Ambiente</a> || <a href="#section-changelog">Notas de versão</a> || <a href="#section-autores">Autores</a> || <a href="#section-contato">Contato</a> || <a href="#section-licenca">Licença</a> ||</p>
 </div>
-<p>Essa aplicação tem como função servir de Backend para o Portal Projeto Primeiro Emprego, um novo conceito de sistema que integra funcionalidades, hoje separadas, de um dos serviços essenciais do cliente (FLEM).</p>
-<br>
+<hr>
+<a name="section-conteudo">
 <h2>Conteúdo</h2>
-<ul>
-<li><a href="#objetivo">Objetivo</a></li>
-<li><a href="#caracter%C3%ADsticas">Características</a></li>
-<li><a href="#especifica%C3%A7%C3%B5es">Especificações</a></li>
-<li><a href="#stack">Stack</a></li>
-<li><a href="#documenta%C3%A7%C3%A3o">Documentação</a></li>
-<li><a href="#notas-de-vers%C3%A3o">Notas de versão</a></li>
-<li><a href="#como-usar-este-reposit%C3%B3rio">Como usar este repositório</a>
-<ul>
-<li><a href="#vari%C3%A1veis-de-ambiente">Variáveis de Ambiente</a></li>
-</ul>
-</li>
-<li><a href="#autores">Autores</a></li>
-<li><a href="#contato">Contato</a></li>
-<li><a href="#licen%C3%A7a">Licença</a></li>
-</ul>
+</a>
 <br>
-<h2>Objetivo</h2>
+<p>Essa aplicação tem como função servir de Backend para o Portal Projeto Primeiro Emprego, um novo conceito de sistema que integra funcionalidades, hoje separadas, de um dos serviços essenciais do cliente (FLEM).
+Tem os seguintes objetivos:</p>
 <ul>
 <li>Apresentar uma nova solução informatizada que facilite, dinamize e aumente a produtividade dos sistemas computacionais que giram em torno do PPE</li>
 <li>Fornecer de maneira segura, confiável e precisa, dados relacionados ao PPE, seguindo os Princípios Básicos de Desenvolvimento, para garantir a sustentabilidade, manutenibilidade e confiabilidade do Software, melhorando sua performance no geral</li>
 <li>Promover documentação clara e densa o suficiente para discriminar processos e permitir que o Software seja facilmente mantido por qualquer profissional da área de Desenvolvimento</li>
 </ul>
-<br>
+<hr>
+<a name="section-caracteristicas">
 <h2>Características</h2>
+</a>
+<br>
 <ul>
 <li>Desenhado para assumir a responsabilidade das múltiplas conexões com consulta a APIs não-FLEM e manter um circuito de distribuição de informações onde o Backend seja a fonte principal dos dados</li>
 <li>Fácil modularização, atualização e adequação com diferentes sistemas de bancos de dados e inclusão de funcionalidades</li>
 </ul>
-<br>
-<h2>Especificações</h2>
-<ul>
-<li><strong>Tipo de Software:</strong> Aplicação Backend</li>
-<li><strong>Distribuição:</strong> Web</li>
-<li><strong>Arquitetura:</strong> REST API</li>
-<li><strong>Metodologia de Projeto:</strong> Metodologia Ágil</li>
-<li><strong>Estrutura de Biblioteca:</strong> Baseada em Framework</li>
-<li><strong>Disponibilidade de Código:</strong> Open Source</li>
-</ul>
-<br>
+<hr>
+<a name="section-stack">
 <h2>Stack</h2>
+</a>
+<br>
 <ul>
 <li><strong>Linguagem Principal:</strong> <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">Javascript</a></li>
 <li><strong>Framework Principal:</strong> <a href="https://nodejs.org/en/docs/">Node.js</a></li>
 <li><strong>Framework estrutural:</strong> <a href="https://nextjs.org/docs/getting-started">Next.js</a></li>
-<li><strong>Biblioteca de Conexão ODBC:</strong> <a href="https://www.prisma.io">Prisma.io</a></li>
-<li><strong>Banco de Dados:</strong> <a href="https://www.sqlite.org/index.html">SQLite</a></li>
-<li><strong>Gerenciador de Bibliotecas:</strong> <a href="https://yarnpkg.com/getting-started">Yarn</a></li>
-<li><strong>Bibliotecas:</strong> Para uma lista completa de bibliotecas e dependências nos mais variados escopos, conferir o arquivo <a href="https://github.com/frtechdev/flem-ppe-backend/blob/master/package.json">package.json</a>.</li>
+<li><strong>Biblioteca de Conexão ODBC / ORM:</strong> <a href="https://www.prisma.io">Prisma.io</a></li>
+<li><strong>Banco de Dados:</strong> <a href="https://pt.wikipedia.org/wiki/SQL">SQL</a></li>
+<li><strong>Gerenciador de Dependências:</strong> <a href="https://yarnpkg.com/getting-started">Yarn</a></li>
+<li><strong>Bibliotecas:</strong> Para uma lista completa de bibliotecas e dependências nos mais variados escopos, conferir o arquivo <a href="https://github.com/frtechdev/flem-ppe-backend/blob/main/package.json">package.json</a>.</li>
 </ul>
-<br>
+<hr>
+<a name="section-documentacao">
 <h2>Documentação</h2>
+</a>
+<br>
 <ul>
-<li><a href="https://frtechnologies.notion.site/Quadro-Kanban-c6994bfdb6ba4ab98434b805635d3fe7">Quadros Kanban da Metodologia Ágil</a></li>
-<li><a href="https://miro.com/app/board/uXjVOMzAe7s=/?invite_link_id=872842801580">Roadmap</a></li>
-<li><a href="https://frtechnologies.notion.site/Documenta-o-de-Refer-ncia-das-Regras-de-Neg-cio-a66eae4edf5045e4b17e414647500c31">Documentação das Regras de Negócio</a></li>
-<li>Diagramas
-<ul>
-<li><a href="https://miro.com/app/board/uXjVONgTB50=/?invite_link_id=986301656145">Modelo Conceitual de Fluxo de Cadastramento de Beneficiários</a></li>
-<li><a href="https://miro.com/app/board/uXjVOOJxdWc=/?invite_link_id=184583999527">Diagrama de Macroprocessos</a></li>
-<li><a href="https://miro.com/app/board/uXjVOOroXvA=/?invite_link_id=576187018086">Mapa de Macroprocessos</a></li>
-<li>Diagrama de Banco de Dados</li>
-</ul>
+<li>
+<p><a href="https://frtechdev.github.io/flem-ppe-backend/resources/portalppe_manual_de_especificacoes_de_uml.pdf">Manual de Especificações de UML</a></p>
+</li>
+<li>
+<p><a href="https://frtechdev.github.io/flem-ppe-backend/resources/diagram-pdf.pdf">Diagrama de Modelo de Banco de Dados em PDF</a></p>
+</li>
+<li>
+<p><a href="https://frtechdev.github.io/flem-ppe-backend/resources/diagram-sql.sql">Diagrama de Modelo de Banco de Dados em SQL</a></p>
 </li>
 </ul>
 <p>Documentação adicional pode ser encontrada <a href="https://frtechdev.github.io/flem-ppe-backend/">aqui</a>.</p>
+<hr>
+<a name="section-instrucoes">
+<h2>Instruções</h2>
+</a>
 <br>
-<h2>Notas de versão</h2>
-<p>Para ver as notas de versão, clique <a href="https://github.com/frtechdev/flem-ppe-backend/blob/master/CHANGELOG.md">aqui</a>.
-<br></p>
-<h2>Como usar este repositório</h2>
-<p>Em breve.</p>
+<h3>Utilizando o repositório como projeto</h3>
+</a>
+<p>1 - Faça um git clone ou o download do repositório, da forma que preferir</p>
+<pre class="prettyprint source lang-bash"><code>
+git clone https://github.com/frtechdev/flem-ppe-backend.git
+
+</code></pre>
+<p>2 - Instale um gerenciador de pacotes (preferencialmente yarn) utilizando um terminal no diretório raiz do repositório clonado</p>
+<p><code>yarn</code> ou <code>npm install</code></p>
+<p>3 - Execute a aplicação no terminal</p>
+<p><code>yarn dev</code> ou <code>npm run dev</code></p>
+<h3>Implantando o projeto</h3>
+</a>
+<h4>Por um repositório clonado</h4>
+<p><strong>Lembre-se de executar <code>yarn build</code> ANTES de criar seu container com base no repositório local.</strong></p>
+<p>Para criar a imagem, utilize o <code>docker build</code> referenciando o arquivo local do <a href="https://github.com/frtechdev/flem-ppe-backend/blob/main/Dockerfile">Dockerfile</a>:</p>
+<pre class="prettyprint source lang-bash"><code>docker build - &lt; Dockerfile
+</code></pre>
+<h4>Diretamente do repositório remoto</h4>
+<p>Você pode utilizar o <code>docker build</code> referenciando diretamente o repositório:</p>
+<pre class="prettyprint source lang-bash"><code>docker build https://github.com/frtechdev/flem-ppe-backend.git#main
+</code></pre>
+<p>Alternativamente, pode usar o comando detalhado para alterar diretamente configurações como porta e nome do repositório:</p>
+<pre class="prettyprint source lang-bash"><code>docker run -p X:3000 -e github='https://github.com/frtechdev/flem-ppe-backend.git' -it frtechdev/flem-ppe-backend
+</code></pre>
+<p>Onde &quot;X&quot; é uma porta externa de sua escolha. Por padrão, a porta interna é 3000.
+Para alterar a porta interna, altere a linha <code>ENV PORT</code> do <a href="https://github.com/frtechdev/flem-ppe-backend/blob/main/Dockerfile">Dockerfile</a>.</p>
+<p>Para mais informações, visite a <a href="https://docs.docker.com">Documentação do Docker</a>.</p>
+</a>
+<hr>
+<a name="section-vars">
 <h3>Variáveis de Ambiente</h3>
-<p>Para testar a aplicação, crie um arquivo .env com as seguintes variáveis de ambiente:</p>
-<table>
-<thead>
-<tr>
-<th>Variável</th>
-<th>Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>NEXT_PUBLIC_DATABASE_URL=</code></td>
-<td>Define o endereço do Servidor de BD e credenciais para acesso, de acordo com as especificações da biblioteca <a href="https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-node-sqlserver">Prisma.io</a></td>
-</tr>
-<tr>
-<td><code>NEXT_PUBLIC_UPLOAD_TEMP_DIR=</code></td>
-<td>Diretório temporário de armazenamento do upload de arquivo</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Variável</th>
-<th>Uso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>NEXT_PUBLIC_API_MUNIC=</code></td>
-<td>Endereço de API de Municípios</td>
-</tr>
-<tr>
-<td><code>NEXT_PUBLIC_API_MUNIC_FALLBACK=</code></td>
-<td>Endereço de API de Fallback de Municípios</td>
-</tr>
-<tr>
-<td><code>NEXT_PUBLIC_BA_API_DEMAND=</code></td>
-<td>Endereço de API de Demandantes, do PPE BA</td>
-</tr>
-<tr>
-<td><code>NEXT_PUBLIC_API_PPE_BD_LEGADO=</code></td>
-<td>Endereço de API de Banco de Dados Legado da FLEM</td>
-</tr>
-</tbody>
-</table>
+</a>
 <br>
+<h4>Variáveis Principais</h4>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABASE_URL</code></td>
+<td>Define o endereço do Servidor de BD e as demais informações do mesmo. Aceita uma string no formato <code>sqlserver://&lt;ENDEREÇO DO SERVIDOR&gt;:&lt;PORTA&gt;;database=&lt;NOME DO BANCO DE DADOS&gt;;user=&lt;USUÁRIO&gt;;password=&lt;SENHA&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>QUERY_BATCH_SIZE</code></td>
+<td>Define o tamanho total de uma query SQL com o banco de dados. O valor padrão é 2000.</td>
+</tr>
+</tbody>
+</table>
+<h4>APIs Externas</h4>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEXT_PUBLIC_API_MUNIC</code></td>
+<td>Conexão com a API do IBGE para receber dados da listagem de municípios do país. Por exemplo: '<a href="https:%5C/%5C/servicodados.ibge.gov.br/api/v1/localidades/estados">https://servicodados.ibge.gov.br/api/v1/localidades/estados</a>'</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_MUNIC_FALLBACK</code></td>
+<td>Conexão com a API do IBGE para receber dados da listagem de municípios do país, como fallback para a API anterior. Por exemplo: '<a href="https:%5C/%5C/brasilapi.com.br/api/ibge/municipios/v1">https://brasilapi.com.br/api/ibge/municipios/v1</a>'</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_CEP</code></td>
+<td>Conexão com API para validar e prover CEPs válidos. Por exemplo: '<a href="https:%5C/%5C/brasilapi.com.br/api/cep/v2">https://brasilapi.com.br/api/cep/v2</a>'</td>
+</tr>
+</tbody>
+</table>
+<h4>APIs Externas Específicas para dados da Bahia</h4>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEXT_PUBLIC_API_DEMAND_BA</code></td>
+<td>Conexão com API governamental para prover lista de demandantes de acordo com a Secretaria do Estado da Bahia. Por exemplo: '<a href="http:%5C/%5C/servicos.ba.gov.br/api/secretarias">http://servicos.ba.gov.br/api/secretarias</a>'</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_TERRITORIOS_BA</code></td>
+<td>Conexão com API governamental para prover lista de Territórios de Identidade de acordo com a Secretaria do Estado da Bahia. Por exemplo: '<a href="https:%5C/%5C/maps.sihs.ba.gov.br/server/rest/services/DVPA_BAHIA/Territorios_Identidade_BA/MapServer/0?f=pjson">https://maps.sihs.ba.gov.br/server/rest/services/DVPA_BAHIA/Territorios_Identidade_BA/MapServer/0?f=pjson</a>'</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_TERRITORIOS_BA</code></td>
+<td>Conexão com API governamental para prover lista de Territórios de Identidade de acordo com a Secretaria do Estado da Bahia. Por exemplo: '<a href="https:%5C/%5C/maps.sihs.ba.gov.br/server/rest/services/DVPA_BAHIA/Territorios_Identidade_BA/MapServer/0?f=pjson">https://maps.sihs.ba.gov.br/server/rest/services/DVPA_BAHIA/Territorios_Identidade_BA/MapServer/0?f=pjson</a>'</td>
+</tr>
+</tbody>
+</table>
+<h4>Outras APIs Externas</h4>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEXT_PUBLIC_API_GOOGLE_MAPS_KEY</code></td>
+<td>Chave API do Google Maps para prover conexão com a API e calcular distância entre o município de residência do beneficiário e o município da vaga.</td>
+</tr>
+</tbody>
+</table>
+<h4>APIs Internas</h4>
+<table>
+<thead>
+<tr>
+<th>Variável</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEXT_PUBLIC_API_PPE_BD_LEGADO</code></td>
+<td>URL da API de conexão com o BD legado, para obter dados de colaboradores, monitores e beneficiários contidos na aplicação legado do Portal PPE.</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_BD_DOMINIO</code></td>
+<td>URL da API de conexão com o BD da DominioRH, aplicação da Domínio Sistemas atualmente responsável por prover dados de funcionários e colaboradores FLEM, além de dados cadastrais dos beneficiários da aplicação legado do Portal PPE.</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_API_FILE_UPLOAD</code></td>
+<td>URL da API de armazenamento de arquivos.</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_APP_SOURCE</code></td>
+<td>Nome da aplicação. Necessário para indexar os arquivos na API de Upload de Arquivo (padrão: &quot;Portal_PPE&quot;)</td>
+</tr>
+<tr>
+<td><code>NEXT_PUBLIC_PPE_FRONTEND</code></td>
+<td>URL da Aplicação Frontend</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<a name="section-changelog">
+<h2>Notas de versão</h2>
+</a>
+<br>
+<h3>v1.0.0-230623</h3>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Criação de um script de Github Actions para Tag e Release automáticos das versões no branch <code>main</code></li>
+<li>Adição de um script de Github Actions para deploy automático de imagem Docker</li>
+<li>Adição de script de limpeza de index de cache do Git</li>
+<li>Adição do arquivo <code>.yarnclean</code> para sanitização de módulos</li>
+<li>Documentação de todos os componentes, módulos, arquivos e componentes do projeto</li>
+<li>Criação de Handler para tratamento de Exceções e resposta para o usuário</li>
+<li>Inclusão dos assets do Prisma para manutenção e implementação do BD (migração do branch frontend)</li>
+</ul>
+</li>
+<li>
+<p>Alterações</p>
+<ul>
+<li>Remoção do CHANGELOG.MD</li>
+<li>Atualização da documentação</li>
+<li>Remoção de assets frontend do projeto padrão do Next.js</li>
+</ul>
+</li>
+<li>
+<p>Outros</p>
+<ul>
+<li>Sanitização de dependências</li>
+<li>Remoção do Yarn.lock do GITIGNORE</li>
+</ul>
+</li>
+</ul>
+<h3>v0.0.4-220721dx</h3>
+<ul>
+<li>Alteração da localização da documentação feita pelo jsdoc</li>
+<li>Atualização da documentação</li>
+<li>Alteração dos parâmetros de redirecionamento da página principal da API para redirecionar para a documentação</li>
+<li>Documentação dos métodos e demais componentes</li>
+<li>Definição da Homepage da API</li>
+<li>Remoção da especificação de porta via .env (utilizando sintaxe direta dos scripts de execução do Node)</li>
+<li>Atualização do README</li>
+<li>Criação de controller para consulta via API externa</li>
+<li>Remoção de &quot;eixo de formação&quot; como parâmetro de manipulação da importação de beneficiários da planilha</li>
+<li>Melhoria no processamento das rotas, com tratamento de exceções</li>
+<li>Adição de rota central na página da API para transferência da documentação</li>
+<li>Testes iniciais com nodemailer e configuração dos serviços de envio de email</li>
+<li>Reorganização dos utilitários e ferramentas de serviço</li>
+<li>Criação da instância do Prisma Client</li>
+</ul>
+<h3>v0.0.3-220701</h3>
+<ul>
+<li>v0.0.2-220701dx</li>
+</ul>
+<h3>v0.0.2-220701dx</h3>
+<ul>
+<li>Criação dos arquivos principais do projeto</li>
+<li>Criação e definição das variáveis de ambiente</li>
+<li>Criação de linting do ES para Next</li>
+<li>Criação do gitattributes</li>
+<li>Criação do gitignore</li>
+<li>Adição de regras de linting para markdown</li>
+<li>Criação do changelog</li>
+<li>Criação do arquivo de Schema do ORM</li>
+<li>Atualização do README</li>
+<li>Criação da rota de recebimento dos dados da planilha de importação</li>
+<li>Criação do algoritmo de validação perante BD/APIs</li>
+<li>Criação da rota de validação dos dados da planilha de importação</li>
+<li>Criação da rota com API externa para solicitar listagem de Demandantes BA e Municípios BA</li>
+<li>Criação de utilitários para formatação de CPF, Data e Nomes Próprios (capitalização)</li>
+</ul>
+<h3>initial commit</h3>
+<ul>
+<li>Initial commit</li>
+</ul>
+<hr>
+<a name="section-autores">
 <h2>Autores</h2>
+</a>
+<br>
 <a href="https://github.com/frtechdev/flem-ppe-backend/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=frtechdev/flem-ppe-backend" />
 </a>
-<br>
+<hr>
+<a name="section-contato">
 <h2>Contato</h2>
-<p>Se você gostou desse projeto, nos dê uma <a href="https://github.com/frtechdev/flem-ppe-backend" data-icon="octicon-star" aria-label="Star frtechdev/flem-ppe-backend on GitHub">estrela</a>. Isso agirá como um indicador da qualidade dos nossos serviços. <br>
-Para contato, envie um email a: <a href="mailto:devops@frtechnologies.com.br">devops@frtechnologies.com.br</a></p>
+</a>
 <br>
+<p>Se você gostou deste projeto, dê uma <a href="https://github.com/frtechdev/flem-ppe-backend" data-icon="octicon-star" aria-label="Star frtechdev/flem-ppe-backend on GitHub">estrela</a>. <br>
+Para contato, envie um email a: <a href="mailto:dex.houshi@hotmail.com">dex.houshi@hotmail.com</a></p>
+<hr>
+<a name="section-licenca">
 <h2>Licença</h2>
+</a>
 <p>Licenciado sob a <a href="https://github.com/frtechdev/flem-ppe-backend/blob/main/LICENSE">MIT License</a>.</p></article>
     </section>
 
@@ -322,7 +489,7 @@ Para contato, envie um email a: <a href="mailto:devops@frtechnologies.com.br">de
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"benefLookupTeste","link":"<a href=\"global.html#benefLookupTeste\">benefLookupTeste</a>"},{"title":"benefValidateTeste","link":"<a href=\"global.html#benefValidateTeste\">benefValidateTeste</a>"},{"title":"camelCase","link":"<a href=\"global.html#camelCase\">camelCase</a>"},{"title":"fetchDemandantes","link":"<a href=\"global.html#fetchDemandantes\">fetchDemandantes</a>"},{"title":"fetchMunicipios","link":"<a href=\"global.html#fetchMunicipios\">fetchMunicipios</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"phoneNumberFixer","link":"<a href=\"global.html#phoneNumberFixer\">phoneNumberFixer</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"},{"title":"upload","link":"<a href=\"global.html#upload\">upload</a>"}];
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>

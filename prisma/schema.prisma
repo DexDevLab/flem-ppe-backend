@@ -1,371 +1,765 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  //previewFeatures = ["interactiveTransactions"]
+  binaryTargets = ["native", "linux-musl"]
 }
+
+// generator dbml {
+// provider = "prisma-dbml-generator"
+// }
 
 datasource db {
   provider = "sqlserver"
-  url      = env("NEXT_PUBLIC_DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
-model Ba_Beneficiario {
-  id                        String                    @id @default(uuid())
-  matricula_setre           Int                       @unique
-  matricula_flem            Int?
-  nome                      String
-  cpf                       Int?                      @unique
-  rg                        String?                   @unique
-  data_nasc                 DateTime?
-  ctps                      String?                   @unique
-  pis                       String?                   @unique
-  sexo                      String?
-  etnia                     Ba_Etnia                  @relation(fields: [ba_EtniaId], references: [id])
-  deficiencia               String?
-  data_atividade            DateTime?
-  historico                 Ba_Historico[]
-  observacao                String?
-  endereco                  String?
-  numero                    String?
-  complemento               String?
-  bairro                    String?
-  municipio                 String?
-  CEP                       Int?
-  email                     String?
-  telefone                  Ba_TelefoneBeneficiario[]
-  carteira_assinada_1ano    Boolean?
-  ausencia_estagio          Boolean?
-  tamanho_uniforme          Ba_TamanhoUniforme?       @relation(fields: [ba_TamanhoUniformeId], references: [id])
-  eixo_formacao             Ba_EixoFormacao?          @relation(fields: [ba_EixoFormacaoId], references: [id])
-  tecnico_instituicao       String?
-  tecnico_curso             Ba_TecnicoCurso?          @relation(fields: [ba_TecnicoCursoId], references: [id])
-  superior_concluido        Boolean?
-  superior_pretende         Boolean?
-  superior_cursando         Boolean?
-  tecnico_matriculado_outro Boolean?
-  superior_curso            String?
-  superior_modalidade       Ba_SuperiorModalidade?    @relation(fields: [ba_SuperiorModalidadeId], references: [id])
-  superior_instituicao      String?
-  superior_periodo          Ba_SuperiorPeriodo?       @relation(fields: [ba_SuperiorPeriodoId], references: [id])
-  superior_tipo             Ba_SuperiorTipo?          @relation(fields: [ba_SuperiorTipoId], references: [id])
-  superior_ano_conclusao    Int?
-  vaga                      Ba_Vaga?
-  documento                 Ba_Documento?             @relation(fields: [ba_DocumentoId], references: [id])
-  evento_presentes          Ba_EventoLista[]
-  anamnese                  Boolean                   @default(false)
-  usuario_atualizacao       String?
-  usuario_criacao           String?
-  createdAt                 DateTime                  @default(now())
-  updatedAt                 DateTime                  @updatedAt
-  excluido                  Boolean                   @default(false)
-  ba_TamanhoUniformeId      String?
-  ba_EixoFormacaoId         String?
-  ba_TecnicoCursoId         String?
-  ba_SuperiorModalidadeId   String?
-  ba_SuperiorPeriodoId      String?
-  ba_SuperiorTipoId         String?
-  ba_EtniaId                String
-  ba_VagaId                 String
-  ba_DocumentoId            String?
-  ba_AcoesCr                Ba_AcoesCr?               @relation(fields: [ba_AcoesCrId], references: [id])
-  ba_AcoesCrId              String?
+model Ba_Acoes_Cr {
+  id            String                 @id @default(cuid())
+  codAcao       Int                    @default(autoincrement())
+  nome          String
+  descricao     String                 @db.Text
+  excluido      Boolean                @default(false)
+  createdBy     String                 @default("SISTEMA")
+  updatedBy     String                 @default("SISTEMA")
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  evento_id     String?
+  tipoAcaoCr_Id String?
+  evento        Ba_Eventos?            @relation(fields: [evento_id], references: [id])
+  colabCr       Ba_Colaboradores_Cr[]
+  benefAssoc    Ba_Beneficiarios[]
+  contatos      Ba_Contatos_Acoes_Cr[]
+  tipoAcaoCr    Ba_Tipos_Acoes_Cr?     @relation(fields: [tipoAcaoCr_Id], references: [id])
+  historico     Ba_Historico?          @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id  String?
 }
 
-model Ba_AcoesCr {
-  id           String            @id @default(uuid())
-  acao         String
-  sigiloso     Boolean           @default(false)
-  beneficiario Ba_Beneficiario[]
-  concluido    Boolean           @default(false)
-  usuario_criacao String?
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
-}
-
-model Ba_Evento {
-  id                    String              @id @default(uuid())
-  evento                String
-  modalidade            Ba_EventoModalidade @relation(fields: [ba_EventoModalidadeId], references: [id])
-  data                  DateTime
-  local                 Ba_EventoLocal      @relation(fields: [ba_EventoLocalId], references: [id])
-  beneficiarios         Ba_EventoLista[]
-  usuario_criacao       String?
-  createdAt             DateTime            @default(now())
-  updatedAt             DateTime            @updatedAt
-  excluido              Boolean             @default(false)
-  ba_EventoModalidadeId String
-  ba_EventoLocalId      String
-}
-
-model Ba_EventoLista {
-  id                String          @id @default(uuid())
-  evento            Ba_Evento       @relation(fields: [ba_EventoId], references: [id])
-  beneficiario      Ba_Beneficiario @relation(fields: [ba_BeneficiarioId], references: [id])
-  presente          Boolean         @default(false)
-  createdAt         DateTime        @default(now())
-  updatedAt         DateTime        @updatedAt
-  excluido          Boolean         @default(false)
-  ba_EventoId       String
-  ba_BeneficiarioId String
-}
-
-model Ba_EventoModalidade {
-  id         String      @id @default(uuid())
-  modalidade String
-  evento     Ba_Evento[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  excluido   Boolean     @default(false)
-}
-
-model Ba_EventoLocal {
-  id        String      @id @default(uuid())
-  local     String
-  evento    Ba_Evento[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  excluido  Boolean     @default(false)
-}
-
-model Ba_Documento {
-  id           String            @id @default(uuid())
-  nome         String
-  sigiloso     Boolean           @default(false)
-  local        String
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
-}
-
-model Ba_TemplateOficio {
-  id                      String                @id @default(uuid())
-  categoria               Ba_TipoTemplateOficio @relation(fields: [ba_TipoTemplateOficioId], references: [id])
+model Ba_Beneficiarios {
+  id                      String                      @id @default(cuid())
   nome                    String
-  enviado                 Boolean
-  autor                   String
-  createdAt               DateTime              @default(now())
-  updatedAt               DateTime              @updatedAt
-  excluido                Boolean               @default(false)
-  ba_TipoTemplateOficioId String
+  cpf                     String?
+  matriculaFlem           Int?
+  matriculaSec            String                      @unique
+  rg                      String?
+  dataNasc                DateTime?
+  ctps                    String?
+  pis                     String?
+  sexo                    String?
+  deficiencia             String?
+  dataInicioAtividade     DateTime?
+  observacao              String?                     @db.Text
+  logradouro              String?
+  numero                  String?
+  complemento             String?
+  bairro                  String?
+  municipio               String?
+  uf                      String?
+  cep                     String?
+  carteiraAssinada1Ano    Boolean?                    @default(false)
+  ausenciaEstagio         Boolean?                    @default(false)
+  escolaConclusao         String?
+  escolaMunicipio         String?
+  superiorConcluido       String?
+  superiorModalidade      String?
+  superiorPeriodo         Int?
+  cursoTipo               String?
+  superiorTipo            String?
+  superiorPretende        String?
+  superiorCursando        String?
+  superiorCursandoData    DateTime?
+  tecnicoMatriculadoOutro String?
+  tecnicoCursandoOutro    String?
+  superiorCurso           String?
+  superiorInstituicao     String?
+  rendaPpeAjuda           String?
+  superiorAnoInicio       Int?
+  superiorAnoConclusao    Int?
+  anamnese                Boolean                     @default(false)
+  excluido                Boolean                     @default(false)
+  createdBy               String                      @default("SISTEMA")
+  updatedBy               String                      @default("SISTEMA")
+  createdAt               DateTime                    @default(now())
+  updatedAt               DateTime                    @updatedAt
+  acoes                   Ba_Acoes_Cr[]
+  contatosAcoes           Ba_Contatos_Acoes_Cr[]
+  eventos                 Ba_Eventos[]
+  eventosListaPresenca    Ba_Eventos_Lista_Presenca[]
+  materiais               Ba_Materiais[]
+  monitoramentos          Ba_Monitoramentos[]
+  comunicados             Ba_Comunicados[]
+  enviosComunicados       Ba_Comunicados_Enviados[]
+  oficios                 Ba_Oficios[]
+  enviosOficios           Ba_Oficios_Enviados[]
+  documentos              Ba_Documentos[]
+  contatos                Ba_Contatos_Beneficiarios[]
+  vaga                    Ba_Vaga[]
+  historico               Ba_Historico[]
+  pendencias              Ba_Pendencias[]
+  etnia_Id                String?
+  tamanhoUniforme_Id      String?
+  formacao_Id             String?
+  etnia                   Ba_Etnia?                   @relation(fields: [etnia_Id], references: [id])
+  formacao                Ba_Formacao?                @relation(fields: [formacao_Id], references: [id])
+  tamanhoUniforme         Ba_TamanhoUniforme?         @relation(fields: [tamanhoUniforme_Id], references: [id])
+  materiaisEntregues      Ba_Materiais_Entregues[]
 }
 
-model Ba_TipoTemplateOficio {
-  id        String              @id @default(uuid())
+model Ba_Colaboradores_Cr {
+  id            String                 @id @default(cuid())
+  nome          String
+  login_usuario String                 @unique
+  excluido      Boolean                @default(false)
+  createdBy     String                 @default("SISTEMA")
+  updatedBy     String                 @default("SISTEMA")
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  acoes         Ba_Acoes_Cr[]
+  contatosAcoes Ba_Contatos_Acoes_Cr[]
+}
+
+model Ba_Comunicados {
+  id                     String                     @id @default(cuid())
+  codComunicado          Int                        @default(autoincrement())
+  assunto                String
+  conteudoEmail          String                     @db.Text
+  anexosId               String?                    @db.Text
+  excluido               Boolean                    @default(false)
+  createdBy              String                     @default("SISTEMA")
+  updatedBy              String                     @default("SISTEMA")
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
+  remetenteComunicado_Id String?
+  benefAssoc             Ba_Beneficiarios[]
+  enviosComunicados      Ba_Comunicados_Enviados[]
+  remetenteComunicado    Ba_Comunicados_Remetentes? @relation(fields: [remetenteComunicado_Id], references: [id])
+  historico              Ba_Historico?              @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id           String?
+  evento                 Ba_Eventos?                @relation(fields: [evento_Id], references: [id])
+  evento_Id              String?
+}
+
+model Ba_Comunicados_Enviados {
+  id              String            @id @default(cuid())
+  enviado         Boolean           @default(false)
+  conteudoEmail   String            @db.Text
+  anexosId        String?           @db.Text
+  createdBy       String            @default("SISTEMA")
+  updatedBy       String            @default("SISTEMA")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  comunicado_Id   String?
+  beneficiario_Id String?
+  comunicado      Ba_Comunicados?   @relation(fields: [comunicado_Id], references: [id])
+  beneficiario    Ba_Beneficiarios? @relation(fields: [beneficiario_Id], references: [id])
+  historico       Ba_Historico?     @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id    String?
+}
+
+model Ba_Comunicados_Remetentes {
+  id          String           @id @default(cuid())
+  nome        String
+  email       String           @unique
+  excluido    Boolean          @default(false)
+  createdBy   String           @default("SISTEMA")
+  updatedBy   String           @default("SISTEMA")
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  comunicados Ba_Comunicados[]
+  oficios     Ba_Oficios[]
+}
+
+model Ba_Contatos_Acoes_Cr {
+  id              String               @id @default(cuid())
+  descricao       String               @db.Text
+  concluido       Boolean              @default(false)
+  excluido        Boolean              @default(false)
+  createdBy       String               @default("SISTEMA")
+  updatedBy       String               @default("SISTEMA")
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+  acaoCr_id       String?
+  beneficiario_id String?
+  colabCr_id      String?
+  acao_Cr         Ba_Acoes_Cr?         @relation(fields: [acaoCr_id], references: [id])
+  beneficiario    Ba_Beneficiarios?    @relation(fields: [beneficiario_id], references: [id])
+  colabCr         Ba_Colaboradores_Cr? @relation(fields: [colabCr_id], references: [id])
+  historico       Ba_Historico?        @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id    String?
+}
+
+model Ba_Contatos_Beneficiarios {
+  id             String            @id @default(cuid())
+  contato        String
+  observacao     String?
+  excluido       Boolean           @default(false)
+  tipoContato_Id String
+  benefAssoc_Id  String
+  createdBy      String            @default("SISTEMA")
+  updatedBy      String            @default("SISTEMA")
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  tipoContato    Ba_Contatos_Tipos @relation(fields: [tipoContato_Id], references: [id])
+  benefAssoc     Ba_Beneficiarios  @relation(fields: [benefAssoc_Id], references: [id])
+  historico      Ba_Historico?     @relation(fields: [historico_Id], references: [id])
+  historico_Id   String?
+}
+
+model Ba_Contatos_Pontos_Focais {
+  id             String                          @id @default(cuid())
+  contato        String
+  excluido       Boolean                         @default(false)
+  tipoContato_Id String
+  pontoFocal_Id  String?
+  createdBy      String                          @default("SISTEMA")
+  updatedBy      String                          @default("SISTEMA")
+  createdAt      DateTime                        @default(now())
+  updatedAt      DateTime                        @updatedAt
+  tipoContato    Ba_Contatos_Tipos               @relation(fields: [tipoContato_Id], references: [id])
+  pontoFocal     Ba_Unidade_Lotacao_Ponto_Focal? @relation(fields: [pontoFocal_Id], references: [id])
+}
+
+model Ba_Contatos_Tipos {
+  id                    String                      @id @default(cuid())
+  nome                  String?
+  excluido              Boolean                     @default(false)
+  createdBy             String                      @default("SISTEMA")
+  updatedBy             String                      @default("SISTEMA")
+  createdAt             DateTime                    @default(now())
+  updatedAt             DateTime                    @updatedAt
+  contatosBeneficiarios Ba_Contatos_Beneficiarios[]
+  contatosPontosFocais  Ba_Contatos_Pontos_Focais[]
+}
+
+model Ba_Demandantes {
+  id        String         @id @default(cuid())
   sigla     String
-  nome      String
-  template  Ba_TemplateOficio[]
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @updatedAt
-  excluido  Boolean             @default(false)
-}
-
-model Ba_paramsTemplateOficio {
-  id        String   @id @default(uuid())
-  param     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  excluido  Boolean  @default(false)
-}
-
-model Ba_Vaga {
-  id                            String            @id @default(uuid())
-  remessa_setre                 Ba_RemessaSetre   @relation(fields: [ba_RemessaSetreId], references: [id])
-  situacao_vaga                 Ba_SituacaoVaga   @relation(fields: [ba_SituacaoVagaId], references: [id])
-  beneficiario                  Ba_Beneficiario   @relation(fields: [ba_BeneficiarioId], references: [id])
-  unidade_lotacao               Ba_UnidadeLotacao @relation(fields: [ba_UnidadeLotacaoId], references: [id])
-  data_convocacao               DateTime
-  data_publicacao_diariooficial DateTime?
-  observacao                    String?
-  createdAt                     DateTime          @default(now())
-  updatedAt                     DateTime          @updatedAt
-  excluido                      Boolean           @default(false)
-  ba_SituacaoVagaId             String
-  ba_BeneficiarioId             String            @unique
-  ba_RemessaSetreId             String
-  ba_UnidadeLotacaoId           String
-}
-
-model Ba_UnidadeLotacao {
-  id              String          @id @default(uuid())
-  unidade_lotacao String          @unique
-  cep             Int
-  municipio       String
-  bairro          String
-  logradouro      String
-  ponto_focal     Ba_PontoFocal[]
-  vaga            Ba_Vaga[]
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  excluido        Boolean         @default(false)
-  ba_PontoFocalId String
-}
-
-model Ba_PontoFocal {
-  id                      String                  @id @default(uuid())
-  nome                    String
-  telefone                Ba_TelefonePontoFocal[]
-  email                   String
-  unidade_lotacao         Ba_UnidadeLotacao[]
-  createdAt               DateTime                @default(now())
-  updatedAt               DateTime                @updatedAt
-  excluido                Boolean                 @default(false)
-  ba_telefonepontofocalId String
-}
-
-model Ba_EscRegional {
-  id            String                      @id @default(uuid())
-  esc_regional  String
-  munic_atuacao Ba_EscRegionalMunicDemand[]
-  logradouro    String
-  bairro        String
-  municipio     String
-  cep           Int
-  email         String
-  telefone      Int
-  createdAt     DateTime                    @default(now())
-  updatedAt     DateTime                    @updatedAt
-  excluido      Boolean                     @default(false)
-}
-
-model Ba_EscRegionalMunicDemand {
-  id               String         @id @default(uuid())
-  esc_regional     Ba_EscRegional @relation(fields: [ba_EscRegionalId], references: [id])
-  municipio        Int
-  demandante       Int
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  excluido         Boolean        @default(false)
-  ba_EscRegionalId String
-}
-
-model Ba_TelefonePontoFocal {
-  id              String        @id @default(uuid())
-  nome_contato    String
-  numero          Int
-  pontofocal      Ba_PontoFocal @relation(fields: [ba_PontoFocalId], references: [id])
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  excluido        Boolean       @default(false)
-  ba_PontoFocalId String
-}
-
-model Ba_Historico {
-  id                String                @id @default(uuid())
-  categoria         Ba_HistoricoCategoria @relation(fields: [categoriaId], references: [id])
-  categoriaId       String
-  descricao         String
-  data_criacao      DateTime
-  usuario_criacao   String                @default("SISTEMA")
-  beneficiario      Ba_Beneficiario       @relation(fields: [ba_BeneficiarioId], references: [id])
-  createdAt         DateTime              @default(now())
-  updatedAt         DateTime              @updatedAt
-  excluido          Boolean               @default(false)
-  ba_BeneficiarioId String
-}
-
-model Ba_HistoricoCategoria {
-  id        String         @id @default(uuid())
-  categoria String         @unique
-  historico Ba_Historico[]
+  nome      String         @unique
+  vagas     Ba_Vaga[]
+  monitores Ba_Monitores[]
+  excluido  Boolean        @default(false)
+  createdBy String         @default("SISTEMA")
+  updatedBy String         @default("SISTEMA")
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
-  excluido  Boolean        @default(false)
 }
 
-model Ba_TelefoneBeneficiario {
-  id                String           @id @default(uuid())
-  nome_contato      String
-  numero            Int
-  beneficiario      Ba_Beneficiario? @relation(fields: [ba_BeneficiarioId], references: [id])
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-  excluido          Boolean          @default(false)
-  ba_BeneficiarioId String?
+model Ba_Documentos {
+  id            String           @id @default(cuid())
+  descricao     String?
+  sigiloso      Boolean          @default(false)
+  excluido      Boolean          @default(false)
+  anexosId      String?          @db.Text
+  benefAssoc_Id String
+  createdBy     String           @default("SISTEMA")
+  updatedBy     String           @default("SISTEMA")
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  benefAssoc    Ba_Beneficiarios @relation(fields: [benefAssoc_Id], references: [id])
+  historico     Ba_Historico?    @relation(fields: [historico_Id], references: [id])
+  historico_Id  String?
+}
+
+model Ba_Editor_Parametros {
+  id         String   @id @default(cuid())
+  rotulo     String
+  nomeColuna String
+  nomeTabela String
+  excluido   Boolean  @default(false)
+  createdBy  String   @default("SISTEMA")
+  updatedBy  String   @default("SISTEMA")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Ba_Eixo_Formacao {
+  id        String        @id @default(cuid())
+  nome      String        @unique
+  excluido  Boolean       @default(false)
+  formacoes Ba_Formacao[]
+  createdBy String        @default("SISTEMA")
+  updatedBy String        @default("SISTEMA")
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Ba_Escritorio_Regional {
+  id          String          @id @default(cuid())
+  nome        String          @unique
+  cep         String
+  logradouro  String
+  complemento String?
+  bairro      String
+  cidade      String
+  uf          String
+  email       String?
+  num_contato String?
+  monitores   Ba_Monitores[]
+  municipios  Ba_Municipios[]
+  excluido    Boolean         @default(false)
+  createdBy   String          @default("SISTEMA")
+  updatedBy   String          @default("SISTEMA")
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 }
 
 model Ba_Etnia {
-  id           String            @id @default(uuid())
-  etnia        String
-  beneficiario Ba_Beneficiario[]
+  id            String             @id @default(cuid())
+  etnia         String
+  beneficiarios Ba_Beneficiarios[]
+  createdBy     String             @default("SISTEMA")
+  updatedBy     String             @default("SISTEMA")
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+  excluido      Boolean            @default(false)
+}
+
+model Ba_Eventos {
+  id                    String                      @id @default(cuid())
+  nome                  String
+  data                  DateTime
+  modalidade            String
+  benefAssoc            Ba_Beneficiarios[]
+  excluido              Boolean                     @default(false)
+  createdBy             String                      @default("SISTEMA")
+  updatedBy             String                      @default("SISTEMA")
+  createdAt             DateTime                    @default(now())
+  updatedAt             DateTime                    @updatedAt
+  localEvento           Ba_Locais_Eventos?          @relation(fields: [local_EventoId], references: [id])
+  local_EventoId        String?
+  tipoEvento            Ba_Tipos_Eventos?           @relation(fields: [tipo_eventoId], references: [id])
+  tipo_eventoId         String?
+  acao_Cr               Ba_Acoes_Cr[]
+  comunicado            Ba_Comunicados[]
+  evento_lista_Presenca Ba_Eventos_Lista_Presenca[]
+  historico             Ba_Historico?               @relation(fields: [historico_Id], references: [id])
+  historico_Id          String?
+}
+
+model Ba_Eventos_Lista_Presenca {
+  id           String            @id @default(cuid())
+  excluido     Boolean           @default(false)
+  createdBy    String            @default("SISTEMA")
+  updatedBy    String            @default("SISTEMA")
   createdAt    DateTime          @default(now())
   updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+  eventoId     String?
+  evento       Ba_Eventos?       @relation(fields: [eventoId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  benefAssocId String?
+  benefAssoc   Ba_Beneficiarios? @relation(fields: [benefAssocId], references: [id])
+  historico    Ba_Historico?     @relation(fields: [historicoId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historicoId  String?
 }
 
-model Ba_TamanhoUniforme {
-  id           String            @id @default(uuid())
-  tamanho      String
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Formacao {
+  id              String             @id @default(cuid())
+  nome            String             @unique
+  excluido        Boolean            @default(false)
+  createdBy       String             @default("SISTEMA")
+  updatedBy       String             @default("SISTEMA")
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  beneficiarios   Ba_Beneficiarios[]
+  eixo            Ba_Eixo_Formacao?  @relation(fields: [eixo_FormacaoId], references: [id])
+  eixo_FormacaoId String?
 }
 
-model Ba_EixoFormacao {
-  id           String            @id @default(uuid())
-  eixo         String            @unique
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Historico {
+  id                    String                      @id @default(cuid())
+  descricao             String                      @db.Text
+  sigiloso              Boolean                     @default(false)
+  excluido              Boolean                     @default(false)
+  createdBy             String                      @default("SISTEMA")
+  updatedBy             String                      @default("SISTEMA")
+  createdAt             DateTime                    @default(now())
+  updatedAt             DateTime                    @updatedAt
+  tipoHistorico_Id      String?
+  tipoHistorico         Ba_Historico_Tipo?          @relation(fields: [tipoHistorico_Id], references: [id])
+  beneficiario          Ba_Beneficiarios[]
+  oficio                Ba_Oficios[]
+  oficiosEnviados       Ba_Oficios_Enviados[]
+  eventos               Ba_Eventos[]
+  eventosListaPresenca  Ba_Eventos_Lista_Presenca[]
+  acoesCr               Ba_Acoes_Cr[]
+  contatosAcoesCr       Ba_Contatos_Acoes_Cr[]
+  comunicados           Ba_Comunicados[]
+  comunicadosEnviados   Ba_Comunicados_Enviados[]
+  contatosBeneficiarios Ba_Contatos_Beneficiarios[]
+  documentos            Ba_Documentos[]
+  vaga                  Ba_Vaga[]
+  situacaoVaga          Ba_Situacoes_Vaga[]
+  remessaSec            Ba_RemessaSec[]
+  materialEntregue      Ba_Materiais_Entregues[]
 }
 
-model Ba_TecnicoCurso {
-  id           String            @id @default(uuid())
-  curso        String            @unique
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Historico_Tipo {
+  id        String         @id @default(cuid())
+  nome      String         @unique
+  sigiloso  Boolean        @default(false)
+  excluido  Boolean        @default(false)
+  createdBy String         @default("SISTEMA")
+  updatedBy String         @default("SISTEMA")
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  historico Ba_Historico[]
 }
 
-model Ba_SuperiorModalidade {
-  id           String            @id @default(uuid())
-  modalidade   String            @unique
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Locais_Eventos {
+  id          String       @id @default(cuid())
+  nome        String       @unique
+  cep         String
+  logradouro  String
+  complemento String?
+  bairro      String
+  cidade      String
+  uf          String
+  email       String?
+  num_contato String?
+  eventos     Ba_Eventos[]
+  excluido    Boolean      @default(false)
+  createdBy   String       @default("SISTEMA")
+  updatedBy   String       @default("SISTEMA")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
-model Ba_SuperiorPeriodo {
-  id           String            @id @default(uuid())
-  periodo      String            @unique
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Materiais {
+  id                 String                   @id @default(cuid())
+  nome               String                   @unique
+  descricao          String?
+  excluido           Boolean                  @default(false)
+  createdBy          String                   @default("SISTEMA")
+  updatedBy          String                   @default("SISTEMA")
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  beneficiarios      Ba_Beneficiarios[]
+  materiaisEntregues Ba_Materiais_Entregues[]
 }
 
-model Ba_SuperiorTipo {
-  id           String            @id @default(uuid())
-  tipo         String            @unique
-  beneficiario Ba_Beneficiario[]
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
-  excluido     Boolean           @default(false)
+model Ba_Materiais_Entregues {
+  id                 String              @id @default(cuid())
+  dataEntrega        DateTime
+  observacao         String?             @db.Text
+  quantidade         Int
+  excluido           Boolean             @default(false)
+  createdBy          String              @default("SISTEMA")
+  updatedBy          String              @default("SISTEMA")
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  tipo               Ba_Materiais?       @relation(fields: [tipoMaterial_Id], references: [id])
+  tipoMaterial_Id    String?
+  beneficiario       Ba_Beneficiarios?   @relation(fields: [beneficiarios_Id], references: [id])
+  beneficiarios_Id   String?
+  tamanhoEntregue    Ba_TamanhoUniforme? @relation(fields: [tamanhoUniforme_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  tamanhoUniforme_Id String?
+  historico          Ba_Historico?       @relation(fields: [historico_Id], references: [id])
+  historico_Id       String?
 }
 
-model Ba_SituacaoVaga {
-  id                String    @id @default(uuid())
-  situacao          String
-  vaga              Ba_Vaga[]
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  excluido          Boolean   @default(false)
-  ba_RemessaSetreId String
+model Ba_Monitoramentos {
+  id                                String                          @id @default(cuid())
+  dataMonitoramento                 DateTime
+  presencaTecnico                   Boolean                         @default(true)
+  tipoMonitoramento                 String
+  registrosVisitacao                String                          @db.Text
+  desvioFuncao                      Boolean                         @default(false)
+  desvioFuncaoTipo                  String?
+  desvioFuncaoDescricao             String?                         @db.Text
+  gravidez                          Boolean?
+  acidenteTrabalho                  Boolean                         @default(false)
+  acidenteTrabalhoDescricao         String?                         @db.Text
+  impressoesConhecimento            String
+  impressoesHabilidade              String
+  impressoesAutonomia               String
+  impressoesPontualidade            String
+  impressoesMotivacao               String
+  impressoesExperienciaCompFormacao String
+  observacoesEquipePpe              String?                         @db.Text
+  metaType                          String
+  autoAvaliacao_anexoId             String?                         @db.Text
+  benefPontoFocal_anexoId           String?                         @db.Text
+  ambienteTrabalho_anexoId          String?                         @db.Text
+  beneficiario_Id                   String
+  excluido                          Boolean                         @default(false)
+  createdBy                         String                          @default("SISTEMA")
+  updatedBy                         String                          @default("SISTEMA")
+  createdAt                         DateTime                        @default(now())
+  updatedAt                         DateTime                        @updatedAt
+  beneficiario                      Ba_Beneficiarios                @relation(fields: [beneficiario_Id], references: [id])
+  monitoramentoComprovacao          Ba_Monitoramentos_Comprovacoes? @relation(fields: [monitoramentoComprovacao_Id], references: [id])
+  monitoramentoComprovacao_Id       String?
+  monitor                           Ba_Monitores?                   @relation(fields: [monitor_Id], references: [id])
+  monitor_Id                        String?
 }
 
-model Ba_RemessaSetre {
-  id                 String    @id @default(uuid())
+model Ba_Monitoramentos_Comprovacoes {
+  id            String              @id @default(cuid())
+  monitoramento Ba_Monitoramentos[]
+  anexoId       String?             @db.Text
+  excluido      Boolean             @default(false)
+  createdBy     String              @default("SISTEMA")
+  updatedBy     String              @default("SISTEMA")
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+}
+
+model Ba_Monitores {
+  id                   String                   @id @default(cuid())
+  matricula            Int                      @unique
+  nome                 String
+  excluido             Boolean                  @default(false)
+  createdBy            String                   @default("SISTEMA")
+  updatedBy            String                   @default("SISTEMA")
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  escritoriosRegionais Ba_Escritorio_Regional[]
+  demandantes          Ba_Demandantes[]
+  monitoramentos       Ba_Monitoramentos[]
+}
+
+model Ba_Municipios {
+  id                      String                    @id @default(cuid())
+  idIBGE                  Int                       @unique
+  nome                    String
+  excluido                Boolean                   @default(false)
+  createdBy               String                    @default("SISTEMA")
+  updatedBy               String                    @default("SISTEMA")
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  escritorioRegional      Ba_Escritorio_Regional?   @relation(fields: [escritorio_RegionalId], references: [id])
+  escritorio_RegionalId   String?
+  territorioIdentidade    Ba_TerritoriosIdentidade? @relation(fields: [territorioIdentidade_Id], references: [id])
+  territorioIdentidade_Id String?
+  vagas                   Ba_Vaga[]
+}
+
+model Ba_Oficio_Template {
+  id            String          @id @default(cuid())
+  titulo        String          @unique
+  descricao     String?
+  conteudo      String          @db.Text
+  excluido      Boolean         @default(false)
+  createdBy     String          @default("SISTEMA")
+  updatedBy     String          @default("SISTEMA")
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  tipo          Ba_Oficio_Tipo? @relation(fields: [oficio_TipoId], references: [id])
+  oficio_TipoId String?
+  oficios       Ba_Oficios[]
+}
+
+model Ba_Oficio_Tipo {
+  id        String               @id @default(cuid())
+  sigla     String               @unique
+  descricao String               @unique
+  excluido  Boolean              @default(false)
+  oficios   Ba_Oficio_Template[]
+  createdBy String               @default("SISTEMA")
+  updatedBy String               @default("SISTEMA")
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+}
+
+model Ba_Oficios {
+  id                 String                     @id @default(cuid())
+  codOficio          Int                        @default(autoincrement())
+  assunto            String
+  conteudoEmail      String                     @db.Text
+  anexosId           String?                    @db.Text
+  excluido           Boolean                    @default(false)
+  createdBy          String                     @default("SISTEMA")
+  updatedBy          String                     @default("SISTEMA")
+  createdAt          DateTime                   @default(now())
+  updatedAt          DateTime                   @updatedAt
+  remetenteOficio_Id String?
+  templateOficio_Id  String
+  benefAssoc         Ba_Beneficiarios[]
+  enviosOficios      Ba_Oficios_Enviados[]
+  templateOficio     Ba_Oficio_Template         @relation(fields: [templateOficio_Id], references: [id])
+  remetenteOficio    Ba_Comunicados_Remetentes? @relation(fields: [remetenteOficio_Id], references: [id])
+  historico          Ba_Historico?              @relation(fields: [historico_Id], references: [id])
+  historico_Id       String?
+}
+
+model Ba_Oficios_Enviados {
+  id              String            @id @default(cuid())
+  enviado         Boolean           @default(false)
+  conteudoEmail   String            @db.Text
+  conteudoOficio  String            @db.Text
+  anexosId        String?           @db.Text
+  createdBy       String            @default("SISTEMA")
+  updatedBy       String            @default("SISTEMA")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  oficio_Id       String?
+  beneficiario_Id String?
+  oficio          Ba_Oficios?       @relation(fields: [oficio_Id], references: [id])
+  beneficiario    Ba_Beneficiarios? @relation(fields: [beneficiario_Id], references: [id])
+  historico       Ba_Historico?     @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id    String?
+}
+
+model Ba_Pendencias {
+  id               String               @id @default(cuid())
+  pendente         Boolean              @default(true)
+  excluido         Boolean              @default(false)
+  createdBy        String               @default("SISTEMA")
+  updatedBy        String               @default("SISTEMA")
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  beneficiarios    Ba_Beneficiarios[]
+  tipoPendencia    Ba_Pendencias_Tipos? @relation(fields: [tipoPendencia_Id], references: [id])
+  tipoPendencia_Id String?
+}
+
+model Ba_Pendencias_Tipos {
+  id         String          @id @default(cuid())
+  label      String
+  excluido   Boolean         @default(false)
+  createdBy  String          @default("SISTEMA")
+  updatedBy  String          @default("SISTEMA")
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  pendencias Ba_Pendencias[]
+}
+
+model Ba_RemessaSec {
+  id                 String        @id @default(cuid())
   remessa            Int
   data_remessa       DateTime
   arquivo_importacao String
   vaga               Ba_Vaga[]
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  excluido           Boolean   @default(false)
+  createdBy          String        @default("SISTEMA")
+  updatedBy          String        @default("SISTEMA")
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  excluido           Boolean       @default(false)
+  historico          Ba_Historico? @relation(fields: [historico_Id], references: [id])
+  historico_Id       String?
+}
+
+model Ba_Situacoes_Vaga {
+  id              String                   @id @default(cuid())
+  nome            String                   @unique
+  excluido        Boolean                  @default(false)
+  createdBy       String                   @default("SISTEMA")
+  updatedBy       String                   @default("SISTEMA")
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+  tipoSituacao    Ba_Tipos_Situacoes_Vaga? @relation(fields: [tipoSituacao_Id], references: [id])
+  tipoSituacao_Id String?
+  vagas           Ba_Vaga[]
+  historicos      Ba_Historico[]
+}
+
+model Ba_TamanhoUniforme {
+  id                 String                   @id @default(cuid())
+  tamanho            String
+  beneficiarios      Ba_Beneficiarios[]
+  createdBy          String                   @default("SISTEMA")
+  updatedBy          String                   @default("SISTEMA")
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  excluido           Boolean                  @default(false)
+  materiaisEntregues Ba_Materiais_Entregues[]
+}
+
+model Ba_TerritoriosIdentidade {
+  id         String          @id @default(cuid())
+  nome       String
+  excluido   Boolean         @default(false)
+  createdBy  String          @default("SISTEMA")
+  updatedBy  String          @default("SISTEMA")
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  municipios Ba_Municipios[]
+}
+
+model Ba_Tipos_Acoes_Cr {
+  id        String        @id @default(cuid())
+  nome      String
+  excluido  Boolean       @default(false)
+  createdBy String        @default("SISTEMA")
+  updatedBy String        @default("SISTEMA")
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  acoes     Ba_Acoes_Cr[]
+}
+
+model Ba_Tipos_Eventos {
+  id        String       @id @default(cuid())
+  nome      String       @unique
+  eventos   Ba_Eventos[]
+  excluido  Boolean      @default(false)
+  createdBy String       @default("SISTEMA")
+  updatedBy String       @default("SISTEMA")
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Ba_Tipos_Situacoes_Vaga {
+  id            String              @id @default(cuid())
+  nome          String              @unique
+  situacoesVaga Ba_Situacoes_Vaga[]
+  excluido      Boolean             @default(false)
+  createdBy     String              @default("SISTEMA")
+  updatedBy     String              @default("SISTEMA")
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+}
+
+model Ba_Unidade_Lotacao {
+  id          String                           @id @default(cuid())
+  nome        String                           @unique
+  cep         String
+  logradouro  String
+  complemento String?
+  bairro      String
+  municipio   String
+  uf          String
+  pontoFocal  Ba_Unidade_Lotacao_Ponto_Focal[]
+  vaga        Ba_Vaga[]
+  createdBy   String                           @default("SISTEMA")
+  updatedBy   String                           @default("SISTEMA")
+  createdAt   DateTime                         @default(now())
+  updatedAt   DateTime                         @updatedAt
+  excluido    Boolean                          @default(false)
+}
+
+model Ba_Unidade_Lotacao_Ponto_Focal {
+  id                String                      @id @default(cuid())
+  nome              String
+  contato           Ba_Contatos_Pontos_Focais[]
+  createdBy         String                      @default("SISTEMA")
+  updatedBy         String                      @default("SISTEMA")
+  createdAt         DateTime                    @default(now())
+  updatedAt         DateTime                    @updatedAt
+  excluido          Boolean                     @default(false)
+  unidadeLotacao_Id String?
+  unidadeLotacao    Ba_Unidade_Lotacao?         @relation(fields: [unidadeLotacao_Id], references: [id])
+}
+
+model Ba_Vaga {
+  id                     String              @id @default(cuid())
+  dataConvocacao         DateTime
+  publicadoDiarioOficial Boolean             @default(false)
+  observacao             String?
+  excluido               Boolean             @default(false)
+  createdBy              String              @default("SISTEMA")
+  updatedBy              String              @default("SISTEMA")
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+  situacaoVaga_Id        String?
+  remessaSec_Id          String?
+  unidadeLotacao_Id      String?
+  demandante_Id          String?
+  municipio              Ba_Municipios?      @relation(fields: [municipio_Id], references: [id])
+  remessaSec             Ba_RemessaSec?      @relation(fields: [remessaSec_Id], references: [id])
+  situacaoVaga           Ba_Situacoes_Vaga?  @relation(fields: [situacaoVaga_Id], references: [id])
+  unidadeLotacao         Ba_Unidade_Lotacao? @relation(fields: [unidadeLotacao_Id], references: [id])
+  beneficiario           Ba_Beneficiarios?   @relation(fields: [beneficiario_Id], references: [id])
+  beneficiario_Id        String?
+  demandante             Ba_Demandantes?     @relation(fields: [demandante_Id], references: [id])
+  historico              Ba_Historico?       @relation(fields: [historico_Id], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  historico_Id           String?
+  municipio_Id           String?
 }

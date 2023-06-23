@@ -63,10 +63,6 @@
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
     
-    <style>
-      nav{background: yellow}
-    </style>
-    
     <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="display:none">
     <defs>
@@ -107,7 +103,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="2005099" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#benefLookupTeste">benefLookupTeste</a></li><li class="accordion-list" id=""><a href="global.html#benefValidateTeste">benefValidateTeste</a></li><li class="accordion-list" id=""><a href="global.html#camelCase">camelCase</a></li><li class="accordion-list" id=""><a href="global.html#fetchDemandantes">fetchDemandantes</a></li><li class="accordion-list" id=""><a href="global.html#fetchMunicipios">fetchMunicipios</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#phoneNumberFixer">phoneNumberFixer</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li><li class="accordion-list" id=""><a href="global.html#upload">upload</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -174,16 +170,17 @@
 
         
             
-<h4 class="name" id="allowCors">
-    <a href="#allowCors">#</a>
-    <span class="type-signature">(constant) </span>allowCors<span class="type-signature"></span>
+<h4 class="name" id="normalizeString">
+    <a href="#normalizeString">#</a>
+    <span class="type-signature">(constant) </span>normalizeString<span class="type-signature"></span>
 </h4>
 
 
 
 
 <div class="description">
-    <p>Utilitário para dar override sobre erro do CORS com direcionamentos HTTP.</p>
+    <p>Normaliza uma String, isto é, coloca ela em um formato ideal
+para ser utilizada para comparação ou normalizar formatações.</p>
 </div>
 
 
@@ -224,7 +221,7 @@
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="services_apiAllowCors.js.html">services/apiAllowCors.js</a>, <a href="services_apiAllowCors.js.html#line7">line 7</a>
+                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line120">line 120</a>
             </li></ul></dd>
         </div>
     
@@ -245,19 +242,18 @@
 
         
             
-<h4 class="name" id="maskCapitalize">
-    <a href="#maskCapitalize">#</a>
-    <span class="type-signature">(constant) </span>maskCapitalize<span class="type-signature"></span>
+<h4 class="name" id="parseArrayToString">
+    <a href="#parseArrayToString">#</a>
+    <span class="type-signature">(constant) </span>parseArrayToString<span class="type-signature"></span>
 </h4>
 
 
 
 
 <div class="description">
-    <p>Máscara de capitalização de nome, convertendo uma String no formato &quot;JOAO DA SILVA&quot;
-ou &quot;joao da silva&quot; em &quot;Joao da Silva&quot;.
-Utiliza uma lista de exceções que pode ser modificada, compreendendo todos os pronomes
-comuns ou trechos que não devem ser capitalizados.</p>
+    <p>Converte um Array de objetos para um Array de Strings. Utilizado
+para criar os objetos de critério de pesquisa ao BD utilizando
+queries do Prisma.</p>
 </div>
 
 
@@ -298,7 +294,7 @@ comuns ou trechos que não devem ser capitalizados.</p>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line43">line 43</a>
+                <a href="utils_parsers.js.html">utils/parsers.js</a>, <a href="utils_parsers.js.html#line41">line 41</a>
             </li></ul></dd>
         </div>
     
@@ -319,17 +315,20 @@ comuns ou trechos que não devem ser capitalizados.</p>
 
         
             
-<h4 class="name" id="maskCPF">
-    <a href="#maskCPF">#</a>
-    <span class="type-signature">(constant) </span>maskCPF<span class="type-signature"></span>
+<h4 class="name" id="parseArrayToStringEquals">
+    <a href="#parseArrayToStringEquals">#</a>
+    <span class="type-signature">(constant) </span>parseArrayToStringEquals<span class="type-signature"></span>
 </h4>
 
 
 
 
 <div class="description">
-    <p>Máscara de CPF. Converte String no formato &quot;12345678900&quot; para o CPF
-nacional (&quot;123.456.789-00&quot;).</p>
+    <p>Converte um Array de objetos para um Array de Strings. Utilizado
+para criar os objetos de critério de pesquisa ao BD utilizando
+queries do Prisma. Diferentemente de parseArrayToString(), este
+método retorna resultados apenas se os valores encontrados em
+uma pesquisa são idênticos aos pesquisados.</p>
 </div>
 
 
@@ -370,369 +369,7 @@ nacional (&quot;123.456.789-00&quot;).</p>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line7">line 7</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="maskDate">
-    <a href="#maskDate">#</a>
-    <span class="type-signature">(constant) </span>maskDate<span class="type-signature"></span>
-</h4>
-
-
-
-
-<div class="description">
-    <p>Máscara de Data que converte um objeto Date sem locale em uma String
-contendo o valor da data.</p>
-</div>
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line82">line 82</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="phoneNumberFixer">
-    <a href="#phoneNumberFixer">#</a>
-    <span class="type-signature">(constant) </span>phoneNumberFixer<span class="type-signature"></span>
-</h4>
-
-
-
-
-<div class="description">
-    <p>Converte campo de texto contendo número de telefone
-sem formatação para um formato contendo DDD e número.
-Valida o campo e retorna se o número de telefone está
-válido, detectando o DDD e o prefixo do número inserido.</p>
-</div>
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_phoneNumberFixer.js.html">utils/phoneNumberFixer.js</a>, <a href="utils_phoneNumberFixer.js.html#line18">line 18</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="prisma">
-    <a href="#prisma">#</a>
-    <span class="type-signature">(constant) </span>prisma<span class="type-signature"></span>
-</h4>
-
-
-
-
-<div class="description">
-    <p>Client de inicialização do Prisma. Chama o
-Prisma Client e cria um pool de conexão ao BD.</p>
-</div>
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="services_prisma_index.js.html">services/prisma/index.js</a>, <a href="services_prisma_index.js.html#line7">line 7</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="unmaskCPF">
-    <a href="#unmaskCPF">#</a>
-    <span class="type-signature">(constant) </span>unmaskCPF<span class="type-signature"></span>
-</h4>
-
-
-
-
-<div class="description">
-    <p>Máscara reversa de CPF. Converte String no formato &quot;123.456.789-00&quot; para o
-formato sem caracteres especiais (&quot;12345678900&quot;).</p>
-</div>
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line24">line 24</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="upload">
-    <a href="#upload">#</a>
-    <span class="type-signature">(constant) </span>upload<span class="type-signature"></span>
-</h4>
-
-
-
-
-<div class="description">
-    <p>INSTANCIA O MULTER PARA REALIZAR O SALVAMENTO DO ARQUIVO
-BASEADO NO REQUEST HTTP</p>
-</div>
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_beneficiarios_files_upload_index.js.html">pages/api/[entity]/beneficiarios/files/upload/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_upload_index.js.html#line11">line 11</a>
+                <a href="utils_parsers.js.html">utils/parsers.js</a>, <a href="utils_parsers.js.html#line65">line 65</a>
             </li></ul></dd>
         </div>
     
@@ -762,9 +399,9 @@ BASEADO NO REQUEST HTTP</p>
 
     
 
-    <h4 class="name" id="benefLookupTeste">
-        <a href="#benefLookupTeste">#</a>
-        <span class="type-signature">(async) </span>benefLookupTeste<span class="signature">(entity, sheet)</span><span class="type-signature"></span>
+    <h4 class="name" id="benefCheckBd">
+        <a href="#benefCheckBd">#</a>
+        <span class="type-signature"></span>benefCheckBd<span class="signature">(bdLegado, entity, sheet)</span><span class="type-signature"> &rarr; {Object}</span>
     </h4>
 
     
@@ -772,16 +409,31 @@ BASEADO NO REQUEST HTTP</p>
 
 
     <div class="description">
-        <p>Localiza beneficiários por matrícula e por CPF. Caso encontre uma matrícula que coincida com alguma informada
-dentro do BD, verifica se o nome é o mesmo, a fim de prevenir erros de digitação na planilha de importação.
-Se a matrícula e o nome forem os mesmos, marca como &quot;item.found&quot;.
-Se não forem os mesmos, marcam com * os campos de nome, matrícula e CPF para que o colaborador valide e
-verifique se existe alguma informação que foi colocada equivocadamente.
-Se o status da vaga daquele beneficiário não é &quot;ativo&quot;, marca como &quot;item.update&quot;.
-Se o beneficiário da lista na planilha não for encontrado nem pela sua matrícula e nem pelo seu CPF, é marcado
-como FALSE em &quot;item.found&quot;, e marcado como FALSE em &quot;item.update&quot;.
-Valores de CPF nulos são marcados como uma String com 0 de comprimento (&quot;&quot;).
-Valores de Matrícula de Secretaria nulos são mantidos como estão (não são manipulados e nem verificados).</p>
+        <p>Pela Regra de Negócio, beneficiários com status de vaga
+diferente de ATIVO, não são incluídos no BD. Beneficiários
+sem registro encontrado são incluídos no BD. Beneficiários
+com status igual a ATIVO são desprezados.</p>
+<p>Essa função localiza beneficiários por matrícula e/ou por
+CPF dentro dos sistemas legado. Para que a implementação
+de validação de campos pudesse ser testada, foi necessário
+fazer com que a aplicação procurasse por uma lista de
+beneficiários em um BD já populado.</p>
+<p>Desse modo, poderia ser verificado se o beneficiário
+informado constava no sistema, se sua entrada na importação
+estaria apta para sobrescrever os dados antigos ou, se os
+dados, por já constarem, deveriam ser descartados.</p>
+<p>Caso encontre uma matrícula que coincida com alguma informada
+dentro do BD, verifica se o nome é o mesmo, a fim de prevenir
+erros de digitação na planilha de importação. Se a matrícula e
+o nome forem os mesmos, marca como &quot;item.found&quot;. Se não forem os
+mesmos, marcam com * os campos de nome, matrícula e CPF para que
+o colaborador valide e verifique se existe alguma informação que
+foi colocada equivocadamente. Se o status da vaga daquele
+beneficiário não é &quot;ativo&quot;, marca como &quot;item.update&quot;. Se o
+beneficiário da lista na planilha não for encontrado nem pela
+sua matrícula e nem pelo seu CPF, é marcado como FALSE em &quot;item.found&quot;,
+e marcado como FALSE em &quot;item.update&quot;. Valores de CPF nulos são
+marcados como uma String com 0 de comprimento (&quot;&quot;).</p>
     </div>
 
 
@@ -818,13 +470,13 @@ Valores de Matrícula de Secretaria nulos são mantidos como estão (não são m
 
         <tr>
             
-                <td class="name"><code>entity</code></td>
+                <td class="name"><code>bdLegado</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -834,8 +486,32 @@ Valores de Matrícula de Secretaria nulos são mantidos como estão (não são m
 
             
 
-            <td class="description last"><p>a entidade do Projeto (Bahia, Tocantins etc). A entidade é provida pela query
-string da URL da API, em [entity]</p></td>
+            <td class="description last"><p>se a função deverá procurar do BD
+legado ou não</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>entity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a entidade do Projeto (Bahia, Tocantins etc).
+A entidade é provida pela query string da URL da API, em [entity]</p></td>
         </tr>
 
     
@@ -903,7 +579,7 @@ string da URL da API, em [entity]</p></td>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html">pages/api/[entity]/beneficiarios/files/sheets/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html#line191">line 191</a>
+                <a href="controller_beneficiarios_index.js.html">controller/beneficiarios/index.js</a>, <a href="controller_beneficiarios_index.js.html#line578">line 578</a>
             </li></ul></dd>
         </div>
     
@@ -934,13 +610,27 @@ string da URL da API, em [entity]</p></td>
         
             
 <div class="param-desc">
-    <p>a planilha já sinalizada com os beneficiários encontrados ativos (que não são cadastrados),
-não-ativos (que são cadastrados) e beneficiários não encontrados (que devem alimentar o BD). &quot;item.found&quot;
-indica se foi encontrado no BD, seja por matrícula ou por CPF; &quot;item.update&quot; indica se deve ser atualizado,
-ou seja, se os dados recebidos na planilha irão sobrescrever a base de dados (exceto nome e matrícula).</p>
+    <p>Objeto contendo os beneficiários encontrados ativos
+(que são ignorados), não-ativos (que atualizam o BD)  e beneficiários não
+encontrados (que devem alimentar o BD).&quot;item.found&quot; indica se foi encontrado
+no BD, seja por matrícula ou por CPF; &quot;item.update&quot; indica se deve ser atualizado,
+ou seja, se os dados recebidos na planilha irão sobrescrever a
+base de dados (exceto nome e matrícula).</p>
 </div>
 
 
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
 
             
     </div>
@@ -953,9 +643,9 @@ ou seja, se os dados recebidos na planilha irão sobrescrever a base de dados (e
 
     
 
-    <h4 class="name" id="benefValidateTeste">
-        <a href="#benefValidateTeste">#</a>
-        <span class="type-signature">(async) </span>benefValidateTeste<span class="signature">(entity, sheet)</span><span class="type-signature"></span>
+    <h4 class="name" id="benefValidate">
+        <a href="#benefValidate">#</a>
+        <span class="type-signature"></span>benefValidate<span class="signature">(entity, sheet)</span><span class="type-signature"></span>
     </h4>
 
     
@@ -963,9 +653,7 @@ ou seja, se os dados recebidos na planilha irão sobrescrever a base de dados (e
 
 
     <div class="description">
-        <p>Validador de campos, formatação de datas e nomes e devolução dos dados para o request. Esta função é
-para testes, e, portanto, consulta a lista de Demandantes e Municípios por API externa, e precisa ser
-substituído por um BD quando em produção.</p>
+        <p>Realiza a validação dos dados contidos na planilha de importação ou uma série de dados.</p>
     </div>
 
 
@@ -1008,7 +696,7 @@ substituído por um BD quando em produção.</p>
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
             
@@ -1087,7 +775,7 @@ string da URL da API, em [entity]</p></td>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html">pages/api/[entity]/beneficiarios/files/sheets/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html#line353">line 353</a>
+                <a href="controller_beneficiarios_index.js.html">controller/beneficiarios/index.js</a>, <a href="controller_beneficiarios_index.js.html#line721">line 721</a>
             </li></ul></dd>
         </div>
     
@@ -1134,9 +822,9 @@ string da URL da API, em [entity]</p></td>
 
     
 
-    <h4 class="name" id="camelCase">
-        <a href="#camelCase">#</a>
-        <span class="type-signature"></span>camelCase<span class="signature">(str)</span><span class="type-signature"></span>
+    <h4 class="name" id="modifyContatoAcaoCr">
+        <a href="#modifyContatoAcaoCr">#</a>
+        <span class="type-signature"></span>modifyContatoAcaoCr<span class="signature">(entity, dadosAcao)</span><span class="type-signature"> &rarr; {Object}</span>
     </h4>
 
     
@@ -1144,165 +832,7 @@ string da URL da API, em [entity]</p></td>
 
 
     <div class="description">
-        <p>Converte um objeto do tipo String de valor UPPERCASE,
-lowercase ou DiVerSo em um objeto String em camelCase.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>objeto a ser convertido</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html">pages/api/[entity]/beneficiarios/files/sheets/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html#line27">line 27</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>string em formato camelCase</p>
-</div>
-
-
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="fetchDemandantes">
-        <a href="#fetchDemandantes">#</a>
-        <span class="type-signature"></span>fetchDemandantes<span class="signature">(entity)</span><span class="type-signature"></span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Controller que lista os Demandantes baseado no Estado (ou na entity).
-Consulta uma API externa para prover os dados desejados. Este controller
-é utilizado para testes; o de Produção deve utilizar uma consulta via BD.</p>
+        <p>Modifica um contato realizado dentro de uma Ação no BD.</p>
     </div>
 
 
@@ -1345,6 +875,29 @@ Consulta uma API externa para prover os dados desejados. Este controller
             <td class="type">
             
                 
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a &quot;entidade&quot; ou &quot;localização&quot; do Projeto Primeiro Emprego</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dadosAcao</code></td>
+            
+
+            <td class="type">
+            
+                
 <span class="param-type">Object</span>
 
 
@@ -1355,8 +908,12 @@ Consulta uma API externa para prover os dados desejados. Este controller
 
             
 
-            <td class="description last"><p>a entidade do Projeto (Bahia, Tocantins etc).
-A entidade é provida pela query string da URL da API, em [entity]</p></td>
+            <td class="description last"><p>os detalhes do contato da Ação:</p>
+<p>contato Realizado - Se o contato com determinado beneficiário foi feito</p>
+<p>descricao - A descrição do contato realizado</p>
+<p>benef - Beneficiário contatado</p>
+<p>acaoCr - Identificação da Ação CR realizada</p>
+<p>contatoAcao - Identificação do Contato realizado</p></td>
         </tr>
 
     
@@ -1401,7 +958,7 @@ A entidade é provida pela query string da URL da API, em [entity]</p></td>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="controller_api_index.js.html">controller/api/index.js</a>, <a href="controller_api_index.js.html#line12">line 12</a>
+                <a href="controller_fila-acoes_index.js.html">controller/fila-acoes/index.js</a>, <a href="controller_fila-acoes_index.js.html#line98">line 98</a>
             </li></ul></dd>
         </div>
     
@@ -1432,10 +989,22 @@ A entidade é provida pela query string da URL da API, em [entity]</p></td>
         
             
 <div class="param-desc">
-    <p>Objeto JSON contendo a sigla do Demandante e o nome do Demandante</p>
+    <p>Objeto contendo um Array de resultados.</p>
 </div>
 
 
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
 
             
     </div>
@@ -1448,9 +1017,9 @@ A entidade é provida pela query string da URL da API, em [entity]</p></td>
 
     
 
-    <h4 class="name" id="fetchMunicipios">
-        <a href="#fetchMunicipios">#</a>
-        <span class="type-signature"></span>fetchMunicipios<span class="signature">(entity)</span><span class="type-signature"></span>
+    <h4 class="name" id="modifyEscRegMunicMonit">
+        <a href="#modifyEscRegMunicMonit">#</a>
+        <span class="type-signature"></span>modifyEscRegMunicMonit<span class="signature">(entity, id, municipios, monitores)</span><span class="type-signature"> &rarr; {Object}</span>
     </h4>
 
     
@@ -1458,9 +1027,7 @@ A entidade é provida pela query string da URL da API, em [entity]</p></td>
 
 
     <div class="description">
-        <p>Controller que lista os Municípios baseado no Estado (ou na entity).
-Consulta uma API externa para prover os dados desejados. Este controller
-é utilizado para testes; o de Produção deve utilizar uma consulta via BD.</p>
+        <p>Altera um Escritório Regional e seus dados no BD.</p>
     </div>
 
 
@@ -1503,163 +1070,6 @@ Consulta uma API externa para prover os dados desejados. Este controller
             <td class="type">
             
                 
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>a entidade do Projeto (Bahia, Tocantins etc).
-A entidade é provida pela query string da URL da API, em [entity]</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="controller_api_index.js.html">controller/api/index.js</a>, <a href="controller_api_index.js.html#line44">line 44</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Objeto JSON contendo o id do Município e o nome do Município</p>
-</div>
-
-
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="formatCPF">
-        <a href="#formatCPF">#</a>
-        <span class="type-signature"></span>formatCPF<span class="signature">(cpf)</span><span class="type-signature"></span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Converte String para String com caracteres especiais no formato do
-CPF nacional (&quot;123.456.789-00&quot;).</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>cpf</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">String</span>
 
 
@@ -1670,7 +1080,76 @@ CPF nacional (&quot;123.456.789-00&quot;).</p>
 
             
 
-            <td class="description last"><p>String contendo CPF.</p></td>
+            <td class="description last"><p>a &quot;entidade&quot; ou &quot;localização&quot; do Projeto Primeiro Emprego</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>ID do Escritório Regional a ser modificado</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>municipios</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>os Municípios vinculados ao Escritório Regional</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>monitores</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>os Monitores relacionados ao Escritório Regional</p></td>
         </tr>
 
     
@@ -1715,7 +1194,7 @@ CPF nacional (&quot;123.456.789-00&quot;).</p>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="utils_masks.js.html">utils/masks.js</a>, <a href="utils_masks.js.html#line108">line 108</a>
+                <a href="controller_escritorios-regionais_index.js.html">controller/escritorios-regionais/index.js</a>, <a href="controller_escritorios-regionais_index.js.html#line250">line 250</a>
             </li></ul></dd>
         </div>
     
@@ -1746,10 +1225,22 @@ CPF nacional (&quot;123.456.789-00&quot;).</p>
         
             
 <div class="param-desc">
-    <p>String formatada.</p>
+    <p>Objeto contendo um Array de resultados.</p>
 </div>
 
 
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
 
             
     </div>
@@ -1762,9 +1253,9 @@ CPF nacional (&quot;123.456.789-00&quot;).</p>
 
     
 
-    <h4 class="name" id="handler">
-        <a href="#handler">#</a>
-        <span class="type-signature">(async) </span>handler<span class="signature">(req, res)</span><span class="type-signature"></span>
+    <h4 class="name" id="queryComposer">
+        <a href="#queryComposer">#</a>
+        <span class="type-signature"></span>queryComposer<span class="signature">(criteria, req)</span><span class="type-signature"></span>
     </h4>
 
     
@@ -1772,12 +1263,9 @@ CPF nacional (&quot;123.456.789-00&quot;).</p>
 
 
     <div class="description">
-        <p>Fornece demandantes e listas de demandantes, conforme critérios (sigla e nome do demandante).
-Recebe um request HTTP com os seguintes parâmetros:
-entity - a entidade do Projeto (Bahia, Tocantins etc). É dinamicamente
-atribuído pelo caminho da requisição à API.
-sigla - a sigla do demandante.
-demandante - o nome do demandante.</p>
+        <p>Função para compor o filtro da query. Caso a requisição faça uma solicitação
+ao BD utilizando critérios de pesquisa (&quot;condition&quot;) e um objeto de filtro,
+aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.</p>
     </div>
 
 
@@ -1810,6 +1298,38 @@ demandante - o nome do demandante.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>criteria</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Conjunto de critérios de pesquisa:</p>
+<p>condition - Define uma condição de pesquisa, quando
+incluído mais de 1 coluna em &quot;columns&quot;. Caso os critérios de pesquisa
+envolvam informações em mais de 1 coluna, é obrigatório o uso deste
+parâmetro. Se este parâmetro for omitido e exista mais de 1 critério
+de pesquisa em &quot;columns&quot;, a função disparará uma exceção.</p>
+<p>Exemplo: condition=&quot;OR&quot;</p>
+<p>excluido - se inclui entradas no BD que foram excluídas.</p>
+<p>query - restante dos critérios de pesquisa, os quais geralmente envolvem
+entradas ou tabelas específicas onde valores devem ser procurados ou alterados.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -1834,29 +1354,6 @@ demandante - o nome do demandante.</p>
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>HTTP response</p></td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -1898,7 +1395,7 @@ demandante - o nome do demandante.</p>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_demandantes_index.js.html">pages/api/[entity]/demandantes/index.js</a>, <a href="pages_api_%5Bentity%5D_demandantes_index.js.html#line15">line 15</a>
+                <a href="services_prisma_queryComposer.js.html">services/prisma/queryComposer.js</a>, <a href="services_prisma_queryComposer.js.html#line28">line 28</a>
             </li></ul></dd>
         </div>
     
@@ -1929,345 +1426,7 @@ demandante - o nome do demandante.</p>
         
             
 <div class="param-desc">
-    <p>HTTP response como JSON contendo a resposta da query consultada.</p>
-</div>
-
-
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="handler">
-        <a href="#handler">#</a>
-        <span class="type-signature">(async) </span>handler<span class="signature">(req, res)</span><span class="type-signature"></span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Fornece municípios e listas de municípios, conforme critérios (id e nome do município).
-Recebe um request HTTP com os seguintes parâmetros:
-entity - a entidade do Projeto (Bahia, Tocantins etc). É dinamicamente
-atribuído pelo caminho da requisição à API.
-id - o ID do município.
-demandante - o nome do demandante.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>req</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>HTTP request.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>res</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>HTTP response</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_municipios_index.js.html">pages/api/[entity]/municipios/index.js</a>, <a href="pages_api_%5Bentity%5D_municipios_index.js.html#line16">line 16</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>HTTP response como JSON contendo a resposta da query consultada.</p>
-</div>
-
-
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="MyApp">
-        <a href="#MyApp">#</a>
-        <span class="type-signature"></span>MyApp<span class="signature">(props)</span><span class="type-signature"></span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Componente de inicialização da aplicação.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Component</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>propriedades dos Componentes visuais.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages__app.js.html">pages/_app.js</a>, <a href="pages__app.js.html#line8">line 8</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Componente.</p>
+    <p>Objeto contendo o fragmento da Query String para requisitar ao BD.</p>
 </div>
 
 
@@ -2391,7 +1550,7 @@ demandante - o nome do demandante.</p>
         <div class="details-item-container">
             <dt class="tag-source">Source:</dt>
             <dd class="tag-source"><ul class="dummy"><li>
-                <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html">pages/api/[entity]/beneficiarios/files/sheets/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html#line43">line 43</a>
+                <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html">pages/api/[entity]/beneficiarios/files/sheets/index.js</a>, <a href="pages_api_%5Bentity%5D_beneficiarios_files_sheets_index.js.html#line58">line 58</a>
             </li></ul></dd>
         </div>
     
@@ -2464,7 +1623,7 @@ demandante - o nome do demandante.</p>
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"benefLookupTeste","link":"<a href=\"global.html#benefLookupTeste\">benefLookupTeste</a>"},{"title":"benefValidateTeste","link":"<a href=\"global.html#benefValidateTeste\">benefValidateTeste</a>"},{"title":"camelCase","link":"<a href=\"global.html#camelCase\">camelCase</a>"},{"title":"fetchDemandantes","link":"<a href=\"global.html#fetchDemandantes\">fetchDemandantes</a>"},{"title":"fetchMunicipios","link":"<a href=\"global.html#fetchMunicipios\">fetchMunicipios</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"phoneNumberFixer","link":"<a href=\"global.html#phoneNumberFixer\">phoneNumberFixer</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"},{"title":"upload","link":"<a href=\"global.html#upload\">upload</a>"}];
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>

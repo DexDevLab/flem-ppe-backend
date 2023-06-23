@@ -63,10 +63,6 @@
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
     
-    <style>
-      nav{background: yellow}
-    </style>
-    
     <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="display:none">
     <defs>
@@ -107,7 +103,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="2005099" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#benefLookupTeste">benefLookupTeste</a></li><li class="accordion-list" id=""><a href="global.html#benefValidateTeste">benefValidateTeste</a></li><li class="accordion-list" id=""><a href="global.html#camelCase">camelCase</a></li><li class="accordion-list" id=""><a href="global.html#fetchDemandantes">fetchDemandantes</a></li><li class="accordion-list" id=""><a href="global.html#fetchMunicipios">fetchMunicipios</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#phoneNumberFixer">phoneNumberFixer</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li><li class="accordion-list" id=""><a href="global.html#upload">upload</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -141,55 +137,110 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { fetchDemandantes } from "controller/api";
-import { allowCors } from "services/apiAllowCors";
+            <pre class="prettyprint source linenums"><code>import {
+  addDemandante,
+  deleteDemandante,
+  getDemandantes,
+  modifyDemandante,
+} from "controller/demandantes";
+import _ from "lodash";
+import { allowCors } from "services";
+import { exceptionHandler } from "utils/exceptionHandler";
 
 /**
- * Fornece demandantes e listas de demandantes, conforme critérios (sigla e nome do demandante).
- * Recebe um request HTTP com os seguintes parâmetros:
- * entity - a entidade do Projeto (Bahia, Tocantins etc). É dinamicamente
- * atribuído pelo caminho da requisição à API.
- * sigla - a sigla do demandante.
- * demandante - o nome do demandante.
- * @param {Object} req HTTP request.
+ * Handler de manipulação de demandantes.
+ * @method handler
+ * @memberof module:demandantes
+ * @param {Object} req HTTP request
  * @param {Object} res HTTP response
- * @returns HTTP response como JSON contendo a resposta da query consultada.
+ * @returns {Object} HTTP response como JSON contendo a resposta da query consultada.
  */
 const handler = async (req, res) => {
-  try {
-    if (req.method === "GET") {
-      const { entity, sigla, demandante } = req.query;
-      //EM CARÁTER DE TESTE, ESTÁ GERANDO VIA API EXTERNA. ALTERAR PARA CONSULTA VIA BD INTERNO APÓS
-      // CRIAÇÃO DO ESQUEMA.
-      const fetch = await fetchDemandantes(entity);
-      if (sigla || demandante) {
-        const demand = fetch.filter((item) => {
-          if (item.sigla === sigla || item.demandante === demandante) {
+  switch (req.method) {
+    case "GET":
+      try {
+        const {
+          entity,
+          limit,
+          municipio_Id,
+          escritorioRegional_Id,
+          ...filter
+        } = req.query;
+        const queryFilter = () => {
+          if (
+            _.isUndefined(municipio_Id) &amp;&amp;
+            _.isUndefined(escritorioRegional_Id)
+          ) {
             return {
-              sigla: item.sigla,
-              demandante: item.demandante,
+              excluido: false,
+              ...filter,
+            };
+          } else {
+            return {
+              excluido: false,
+              vagas: {
+                some: {
+                  municipio_Id: _.isUndefined(municipio_Id)
+                    ? {}
+                    : {
+                        in: JSON.parse(municipio_Id),
+                      },
+                  municipio: _.isUndefined(escritorioRegional_Id)
+                    ? {}
+                    : {
+                        escritorio_RegionalId: {
+                          in: JSON.parse(escritorioRegional_Id),
+                        },
+                      },
+                },
+              },
             };
           }
-        });
-        return res.status(200).json({ status: "ok", demand });
-      } else {
-        const demand = fetch.map((item) => {
-          return {
-            sigla: item.sigla,
-            demandante: item.demandante,
-          };
-        });
-        return res.status(200).json({ status: "ok", demand });
+        };
+        const query = await getDemandantes(
+          entity,
+          queryFilter(),
+          limit,
+          municipio_Id,
+          escritorioRegional_Id
+        );
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
       }
-    }
-    else if (req.method === "PUT"){
-      // CRIAR MÉTODO PUT PARA INSERÇÃO NO BD
-    }
-    else{
-      return res.status(405).json({ status: 405, message: "METHOD NOT ALLOWED" });
-    }
-  } catch (error) {
-    return res.status(500).json({ status: 500, message: "FALHA AO PROCESSAR A SOLICITAÇÃO HTTP.", error: error.message });
+    case "POST":
+      try {
+        const { entity } = req.query;
+        const { nome, sigla } = req.body;
+        const query = await addDemandante(entity, nome, sigla);
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    case "PUT":
+      try {
+        const { entity } = req.query;
+        const { nome, sigla, id } = req.body;
+        const query = await modifyDemandante(
+          entity,
+          nome,
+          sigla.toUpperCase(),
+          id
+        );
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    case "DELETE":
+      try {
+        const { entity, id } = req.query;
+        const query = await deleteDemandante(entity, id);
+        return res.status(200).json(query);
+      } catch (e) {
+        return exceptionHandler(e, res);
+      }
+    default:
+      return exceptionHandler(null, res);
   }
 };
 
@@ -219,7 +270,7 @@ export default allowCors(handler);
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"benefLookupTeste","link":"<a href=\"global.html#benefLookupTeste\">benefLookupTeste</a>"},{"title":"benefValidateTeste","link":"<a href=\"global.html#benefValidateTeste\">benefValidateTeste</a>"},{"title":"camelCase","link":"<a href=\"global.html#camelCase\">camelCase</a>"},{"title":"fetchDemandantes","link":"<a href=\"global.html#fetchDemandantes\">fetchDemandantes</a>"},{"title":"fetchMunicipios","link":"<a href=\"global.html#fetchMunicipios\">fetchMunicipios</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"phoneNumberFixer","link":"<a href=\"global.html#phoneNumberFixer\">phoneNumberFixer</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"},{"title":"upload","link":"<a href=\"global.html#upload\">upload</a>"}];
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>

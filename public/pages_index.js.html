@@ -63,10 +63,6 @@
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
     
-    <style>
-      nav{background: yellow}
-    </style>
-    
     <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     style="display:none">
     <defs>
@@ -107,7 +103,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="2005099" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#benefLookupTeste">benefLookupTeste</a></li><li class="accordion-list" id=""><a href="global.html#benefValidateTeste">benefValidateTeste</a></li><li class="accordion-list" id=""><a href="global.html#camelCase">camelCase</a></li><li class="accordion-list" id=""><a href="global.html#fetchDemandantes">fetchDemandantes</a></li><li class="accordion-list" id=""><a href="global.html#fetchMunicipios">fetchMunicipios</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#phoneNumberFixer">phoneNumberFixer</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li><li class="accordion-list" id=""><a href="global.html#upload">upload</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">FLEM PPE Backend - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-ppe-backend/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="3739838" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#benefCheckBd">benefCheckBd</a></li><li class="accordion-list" id=""><a href="global.html#benefValidate">benefValidate</a></li><li class="accordion-list" id=""><a href="global.html#modifyContatoAcaoCr">modifyContatoAcaoCr</a></li><li class="accordion-list" id=""><a href="global.html#modifyEscRegMunicMonit">modifyEscRegMunicMonit</a></li><li class="accordion-list" id=""><a href="global.html#normalizeString">normalizeString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#replaceKeys">replaceKeys</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -141,77 +137,16 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
-/**
- * Componente de página principal.
- * @returns Componente
+            <pre class="prettyprint source linenums"><code>/**
+ * Componente de Home page.
+ * @method Home
+ * @memberof module:pages
+ * @param {Component} props propriedades dos Componentes visuais.
+ * @returns {Component} Componente.
  */
 export default function Home() {
   return (
-    &lt;div className={styles.container}>
-      &lt;Head>
-        &lt;title>Create Next App&lt;/title>
-        &lt;meta name="description" content="Generated by create next app" />
-        &lt;link rel="icon" href="/favicon.ico" />
-      &lt;/Head>
-
-      &lt;main className={styles.main}>
-        &lt;h1 className={styles.title}>
-          Welcome to &lt;a href="https://nextjs.org">Next.js!&lt;/a>
-        &lt;/h1>
-
-        &lt;p className={styles.description}>
-          Get started by editing{' '}
-          &lt;code className={styles.code}>pages/index.js&lt;/code>
-        &lt;/p>
-
-        &lt;div className={styles.grid}>
-          &lt;a href="https://nextjs.org/docs" className={styles.card}>
-            &lt;h2>Documentation &amp;rarr;&lt;/h2>
-            &lt;p>Find in-depth information about Next.js features and API.&lt;/p>
-          &lt;/a>
-
-          &lt;a href="https://nextjs.org/learn" className={styles.card}>
-            &lt;h2>Learn &amp;rarr;&lt;/h2>
-            &lt;p>Learn about Next.js in an interactive course with quizzes!&lt;/p>
-          &lt;/a>
-
-          &lt;a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            &lt;h2>Examples &amp;rarr;&lt;/h2>
-            &lt;p>Discover and deploy boilerplate example Next.js projects.&lt;/p>
-          &lt;/a>
-
-          &lt;a
-            href="https://vercel.com/new?utm_source=create-next-app&amp;utm_medium=default-template&amp;utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            &lt;h2>Deploy &amp;rarr;&lt;/h2>
-            &lt;p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            &lt;/p>
-          &lt;/a>
-        &lt;/div>
-      &lt;/main>
-
-      &lt;footer className={styles.footer}>
-        &lt;a
-          href="https://vercel.com?utm_source=create-next-app&amp;utm_medium=default-template&amp;utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          &lt;span className={styles.logo}>
-            &lt;Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          &lt;/span>
-        &lt;/a>
-      &lt;/footer>
-    &lt;/div>
+    &lt;>&lt;/>
   )
 }
 </code></pre>
@@ -239,7 +174,7 @@ export default function Home() {
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"benefLookupTeste","link":"<a href=\"global.html#benefLookupTeste\">benefLookupTeste</a>"},{"title":"benefValidateTeste","link":"<a href=\"global.html#benefValidateTeste\">benefValidateTeste</a>"},{"title":"camelCase","link":"<a href=\"global.html#camelCase\">camelCase</a>"},{"title":"fetchDemandantes","link":"<a href=\"global.html#fetchDemandantes\">fetchDemandantes</a>"},{"title":"fetchMunicipios","link":"<a href=\"global.html#fetchMunicipios\">fetchMunicipios</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"phoneNumberFixer","link":"<a href=\"global.html#phoneNumberFixer\">phoneNumberFixer</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"},{"title":"upload","link":"<a href=\"global.html#upload\">upload</a>"}];
+        var list = [{"title":"benefCheckBd","link":"<a href=\"global.html#benefCheckBd\">benefCheckBd</a>"},{"title":"benefValidate","link":"<a href=\"global.html#benefValidate\">benefValidate</a>"},{"title":"modifyContatoAcaoCr","link":"<a href=\"global.html#modifyContatoAcaoCr\">modifyContatoAcaoCr</a>"},{"title":"modifyEscRegMunicMonit","link":"<a href=\"global.html#modifyEscRegMunicMonit\">modifyEscRegMunicMonit</a>"},{"title":"normalizeString","link":"<a href=\"global.html#normalizeString\">normalizeString</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"replaceKeys","link":"<a href=\"global.html#replaceKeys\">replaceKeys</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>

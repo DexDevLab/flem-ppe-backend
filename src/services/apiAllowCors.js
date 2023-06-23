@@ -1,10 +1,12 @@
-import NextCors from "nextjs-cors";
 /**
  * Utilitário para dar override sobre erro do CORS com direcionamentos HTTP.
+ * @method allowCors
+ * @memberof module:services
  * @param {Function} fn função contendo a requisição ou o objeto da rota.
- * @returns rota já trabalhada com os headers de segurança
+ * @returns {Function} Função com rota já trabalhada com os headers de segurança
  */
 export const allowCors = (fn) => async (req, res) => {
+  
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Allow-Origin", "*");
   // INCLUIR SE NECESSÁRIO:
